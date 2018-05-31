@@ -12,24 +12,25 @@ import {observer,inject} from 'mobx-react';
 // import {LoadingView} from "./LoadingView";
 // import {ErrorView} from "./ErrorView";
 import BaseNavBar from './BaseNavBar'
+import {BaseError} from './index';
 
 type Props={
 
     store: any,
     onErrorPress: void,
-    navBar: any,
-    title: string,
-    hideLeft: boolean,
-    leftPress: any,
-    leftTitle: string,
-    leftView: any,
-    leftIcon: string | number,
-    hideRight: boolean,
-    rightPress: void,
-    rightView: any,
-    rightIcon: any,
-    rightTitle: string,
-    hasShadow: boolean
+    // navBar: any,
+    // title: string,
+    // hideLeft: boolean,
+    // leftPress: any,
+    // leftTitle: string,
+    // leftView: any,
+    // leftIcon: string | number,
+    // hideRight: boolean,
+    // rightPress: void,
+    // rightView: any,
+    // rightIcon: any,
+    // rightTitle: string,
+    // hasShadow: boolean,
 }
 
 @inject('baseTheme')
@@ -38,7 +39,7 @@ export default class BaseContainer extends Component <Props>{
 
     static defaultProps = {
         hasShadow:false
-    }
+    };
 
     // 构造
       constructor(props) {
@@ -51,7 +52,7 @@ export default class BaseContainer extends Component <Props>{
         if (!store) return children;
         const {isLoading, isError} = store;
         if (isLoading) return <View/>;
-        if (isError) return <View/>;
+        if (isError) return <BaseError/>;
         return children;
     }
 
