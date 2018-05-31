@@ -7,9 +7,10 @@ import {RouteHelper} from 'react-navigation-easy-helper';
 @observer
 export class BookScreen extends React.Component{
 
+
     render(){
         return(
-            <BaseContainer title={BaseString.TabBarHeader.BOOK}>
+            <BaseContainer>
                 <TouchableOpacity
                     onPress={this.onPress}
                     >
@@ -20,6 +21,6 @@ export class BookScreen extends React.Component{
     }
 
     onPress=()=>{
-
+        this.props.navigation.navigate('Test')
     }
 }

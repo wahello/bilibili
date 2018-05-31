@@ -6,8 +6,9 @@ global.HEIGHT = Dimensions.get('window').height;
 global.POXEL = StyleSheet.hairlineWidth;
 
 if (Platform.OS === 'android') {
-    StatusBar.setTranslucent(true);
-    StatusBar.setBackgroundColor('transparent')
+    //StatusBar.setTranslucent(true);
+    //StatusBar.setBackgroundColor('#FFF')
+    //StatusBar.setBarStyle('dark-content')
 }
 
 if (!__DEV__) {

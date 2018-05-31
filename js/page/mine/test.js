@@ -5,14 +5,14 @@ import {observer,inject} from 'mobx-react';
 
 
 @observer
-export class MineScreen extends React.Component{
-
+export class Test extends React.Component{
+    
 
     render(){
         return(
-          <BaseContainer>
-              <Text onPress={()=>this.props.navigation.navigate('Test')}>跳转</Text>
-          </BaseContainer>
+            <Text onPress={()=>this.props.navigation.push('Test')}>
+                点击
+            </Text>
         )
     }
 }

@@ -9,7 +9,7 @@ export default class SplashScreen extends React.Component<any,any>{
 
     componentDidMount() {
         this.timer = setTimeout(()=>{
-            this.props.navigation.navigate('ModalView')
+            this.props.navigation.navigate('Tab')
         },2000)
     }
 

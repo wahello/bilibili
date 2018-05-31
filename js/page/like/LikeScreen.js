@@ -8,7 +8,7 @@ export class LikeScreen extends React.Component{
 
     render(){
         return(
-            <BaseContainer title={BaseString.TabBarHeader.LIKE}/>
+            <BaseContainer/>
         )
     }
 }

@@ -4,9 +4,10 @@
 import React, {Component} from 'react';
 import {
     View,
-    StyleSheet
+    StyleSheet,
+    StatusBar
 } from 'react-native';
-
+import {SafeAreaView} from 'react-navigation';
 import {observer,inject} from 'mobx-react';
 // import {LoadingView} from "./LoadingView";
 // import {ErrorView} from "./ErrorView";
@@ -68,10 +69,18 @@ export default class BaseContainer extends Component <Props>{
 
     render() {
 
-        return <View style={[styles.container,{backgroundColor:this.baseTheme.brightBackGroundColor}]}>
-            {this.renderNavView()}
-            {this.renderContent()}
-        </View>
+        return(
+            <SafeAreaView
+                forceInset={{ top: 'always' }}
+                style={[styles.container,{backgroundColor:this.baseTheme.brightBackGroundColor}]}>
+                {/*{this.renderNavView()}*/}
+                {this.renderContent()}
+                <StatusBar
+                    backgroundColor='#FFFFFF'
+                    barStyle='dark-content'/>
+            </SafeAreaView>
+            )
+
     }
 }
 
