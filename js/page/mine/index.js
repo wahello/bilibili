@@ -1,0 +1,1 @@
+export {MineScreen} from './MineScreen';
