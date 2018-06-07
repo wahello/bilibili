@@ -5,8 +5,8 @@ import {brightColor,darkColor} from "./BaseColor";
 interface Theme{
     isDark:boolean;
     isIPhoneX:boolean;
-    statusBarHeight:void;
-    changeTheme:void
+    statusBarHeight:()=>mixed;
+    changeTheme:()=>mixed
 }
 
 /**
@@ -52,6 +52,6 @@ export default class BaseTheme implements Theme{
         this.brightStatusBarStyle = darkColor.brightStatusBarStyle;
         this.brightRecommended = darkColor.brightRecommended;
         this.brightDefaultColor = darkColor.brightDefaultColor;
-
+        this.isDark = true
     }
 }

@@ -1,5 +1,6 @@
 /**
  *@flow
+ * 颜色管理类
  */
 
 interface ThemeColor {
@@ -67,7 +68,6 @@ class DarkColor implements ThemeColor{
 
 const brightColor = new BrightColor();
 const darkColor = new DarkColor();
-
 
 export {
     brightColor,darkColor

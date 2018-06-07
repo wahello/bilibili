@@ -3,13 +3,19 @@
  */
 import * as React from 'react';
 import FastImage from 'react-native-fast-image'
+import {Style} from "../utils/type";
 
 type Props={
-    styles:any,
+    styles:Style,
     uri:string|number,
-    children:any
+    children:React.Children
 }
-
+/**
+ * 图片显示组件
+ * @param props
+ * @returns {*}
+ * @constructor
+ */
 export const ImageView=(props:Props)=>(
     <FastImage
         style={props.styles}
@@ -18,6 +24,6 @@ export const ImageView=(props:Props)=>(
         }
         resizeMode={FastImage.resizeMode.contain}>
         {props.children}
-        </FastImage>
+    </FastImage>
 );
 

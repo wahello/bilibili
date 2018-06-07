@@ -20,14 +20,15 @@ export default class App extends React.Component<any,State>{
     };
 
     async componentDidMount() {
-        setTimeout(()=>{
+        await setTimeout(()=>{
           this.setState({
-              initApp:'Splash'
+              initApp:'Tab'
           })
-        },100)
+        })
     }
 
     render(){
+
         const {initApp} = this.state;
         if (!!initApp){
             const App = configAppNavigator(initApp);
@@ -37,8 +38,7 @@ export default class App extends React.Component<any,State>{
                 </Provider>
             )
         }
-
         return null;
-
     }
+
 }

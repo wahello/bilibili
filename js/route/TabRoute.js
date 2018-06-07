@@ -2,7 +2,7 @@
  * @flow
  */
 import * as React from 'react';
-import {createBottomTabNavigator, createStackNavigator, createSwitchNavigator} from 'react-navigation';
+import {createBottomTabNavigator, createStackNavigator, createSwitchNavigator,createDrawerNavigator} from 'react-navigation';
 import {BookScreen} from '../page/book/index';
 import {LikeScreen} from '../page/like/index';
 import {MineScreen} from '../page/mine/index';
@@ -11,25 +11,52 @@ import {BaseString, BaseTheme,BaseStack} from "../base";
 import BaseImage from "../base/BaseImage";
 import SplashScreen from "../page/SplashScreen";
 import StackRoute from './StackRoute';
+import {configRoute} from 'react-navigation-easy-helper';
 
-export const Book = createStackNavigator({
-    BookScreen:BaseStack.StackTabItem(BookScreen,BaseString.TAB_BAR_HEADER_BOOK),
-    ...StackRoute,
-},
-    BaseStack.StackTabItemConfig
-);
+const confing = {
+    gesturesEnabled:true,
+    headerBackTitleStyle:{color:'#000'},
+    headerTintColor:'#000',
+};
 
-export const Like = createStackNavigator({
-    LikeScreen:BaseStack.StackTabItem(LikeScreen,BaseString.TAB_BAR_HEADER_LIKE),
-    ...StackRoute,
-},
-    BaseStack.StackTabItemConfig
-);
+export const Book = createStackNavigator(
+    configRoute({
+        BookScreen:{screen:BookScreen,navigationOptions:({navigation})=>({
+                headerTitle:BaseString.TAB_BAR_HEADER_BOOK,
+                headerStyle:{
+                    backgroundColor:new BaseTheme().brightNavBackGroundColor
+                }
+            })},
 
-export const Mine = createStackNavigator({
-        MineScreen:BaseStack.StackTabItem(MineScreen,BaseString.TAB_BAR_HEADER_MINE),
         ...StackRoute,
-},
+    }),
+    BaseStack.StackTabItemConfig
+);
+
+export const Like = createStackNavigator(
+    configRoute({
+        LikeScreen:{screen:LikeScreen,navigationOptions:({navigation})=>({
+                headerTitle:BaseString.TAB_BAR_HEADER_LIKE,
+                headerStyle:{
+                    borderBottomWidth:0,
+                    backgroundColor:new BaseTheme().brightNavBackGroundColor
+                }
+            })},
+        ...StackRoute,
+    }),
+    BaseStack.StackTabItemConfig
+);
+
+export const Mine = createStackNavigator(
+        configRoute({
+            MineScreen:{screen:MineScreen,navigationOptions:({navigation})=>({
+                    headerTitle:BaseString.TAB_BAR_HEADER_MINE,
+                    headerStyle:{
+                        backgroundColor:new BaseTheme().brightNavBackGroundColor
+                    }
+                })},
+            ...StackRoute,
+        }),
     BaseStack.StackTabItemConfig
 );
 
@@ -47,11 +74,12 @@ const Tab = observer(createBottomTabNavigator({
     }
 ));
 
+
 const SplashView = initialRouteName=>createSwitchNavigator({
     Splash:{screen:SplashScreen},
     Tab:{screen:Tab}
 },{
-    initialRouteName:'Splash',
+    initialRouteName:initialRouteName,
 });
 
 export default SplashView;

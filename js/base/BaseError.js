@@ -10,14 +10,15 @@ import {
 } from 'react-native';
 import {observer,inject} from 'mobx-react';
 import {BIN_TITLE,ERROR_TEXT} from './BaseString';
+import {Style} from "../utils/type";
 
 
 type Props={
     btnTitle: string,
-    onPress: void,
-    btnStyle: any,
+    onPress: ()=>mixed,
+    btnStyle: Style,
     errorText: string,
-    textStyle: any
+    textStyle: Style
 }
 
 @inject('baseTheme')

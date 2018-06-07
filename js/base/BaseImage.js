@@ -2,9 +2,10 @@
  * @flow
  */
 
-
+/**
+ * 图片管理类
+ */
 class BaseImage {
-
 
     home_uncheck :string = require('../assest/tabImg/home_uncheck.png');
     home_selected :string= require('../assest/tabImg/home_selected.png');
@@ -29,7 +30,7 @@ class BaseImage {
     ic_svstatus_loading:string=require('../assest/icon/ic_svstatus_loading.png');
     reader_background_brown_big_img:string=require('../assest/icon/reader_background_brown_big_img.jpg');
     ad_splsh_bg:string=require('../assest/icon/ad_splsh_bg.jpg');
-    back:string=require('../assest/icon/back.png')
+    back:string=require('../assest/icon/back.png');
 
 }
 

@@ -12,6 +12,7 @@
 
 import {
     PixelRatio,
+    DeviceInfo
 } from 'react-native';
 
 let fontScale:number = PixelRatio.getFontScale();//返回字体大小缩放比例
@@ -37,4 +38,8 @@ export function setSpText(size: number):number {
 export function scaleSize(size: number):number {
     size = Math.round(size * scale + 0.5);
     return size / defaultPixel;
+}
+
+export function isIPhoneX() {
+    return DeviceInfo.isIPhoneX_deprecated
 }

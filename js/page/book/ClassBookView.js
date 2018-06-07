@@ -7,6 +7,8 @@ import {ImageView} from "../../component/ImageView";
 import {BaseString} from "../../base/";
 import {BaseApi} from "../../assest/api";
 import {inject, observer} from "mobx-react";
+import {RouteHelper} from 'react-navigation-easy-helper';
+import {style} from "./Styles";
 
 type Props={
     navigate:any,
@@ -14,7 +16,7 @@ type Props={
 }
 
 type State ={
-    lineXY:Animated,
+    lineXY:Animated.Value,
     offset:number
 }
 
@@ -26,7 +28,7 @@ export class ClassBookView extends React.Component<Props,State>{
     constructor(props) {
         super(props);
         // 初始状态
-        this.navigate = this.props.navigate;
+        //this.navigate = this.props.navigate;
         this.baseTheme = this.props.baseTheme;
     }
 
@@ -41,6 +43,12 @@ export class ClassBookView extends React.Component<Props,State>{
             inputRange:[0,1],
             outputRange:[0,this.state.offset]
         });
+
+        const mHeight = this.state.lineXY.interpolate({
+            inputRange:[0,0.5,1],
+            outputRange:[20,40,20]
+        })
+
         return(
             <View style={[style.container,{flexDirection:'row',backgroundColor:this.baseTheme.brightBackGroundColor}]}>
                 <FlatList
@@ -52,7 +60,8 @@ export class ClassBookView extends React.Component<Props,State>{
                     showsVerticalScrollIndicator={false}
                     contentContainerStyle={style.leftScrollView}/>
                 <Animated.View
-                    style={[style.indicator,{transform:[{translateY:offset}],backgroundColor:this.baseTheme.brightTopTabBottomColor,}]}/>
+                    style={[style.indicator,
+                        {transform:[{translateY:offset}], backgroundColor:this.baseTheme.brightTopTabBottomColor,}]}/>
 
                 <SectionList
                     ref='sectionList'
@@ -100,6 +109,8 @@ export class ClassBookView extends React.Component<Props,State>{
     offsetAnimated=(i)=>{
         Animated.spring(this.state.lineXY,{
             toValue:i,
+            damping:15,
+            stiffness:150,
             useNativeAnimations:true
         }).start();
     };
@@ -131,11 +142,9 @@ export class ClassBookView extends React.Component<Props,State>{
 
         return(
             <View style={[style.renderSectionHeader,{ backgroundColor:this.baseTheme.brightBackGroundColor,}]}>
-
                 <View style={style.renderSectionHeader1}>
                     <Text style={[style.renderSectionHeaderTitle,{ color:this.baseTheme.brightTextColor}]}>{headerTitle}</Text>
                 </View>
-
             </View>
         )
     };
@@ -144,7 +153,6 @@ export class ClassBookView extends React.Component<Props,State>{
 
         return(
             <FlatList
-                style={{marginTop:10,marginBottom:10}}
                 data={item}
                 numColumns = {2}
                 renderItem = {this.renderItem}
@@ -155,7 +163,6 @@ export class ClassBookView extends React.Component<Props,State>{
 
     renderItem=({item})=>{
 
-
         let image1 = BaseApi.BookBase4+item.bookCover[0];
         let image2 = BaseApi.BookBase4+item.bookCover[1];
         let image3 = BaseApi.BookBase4+item.bookCover[2];
@@ -164,7 +171,7 @@ export class ClassBookView extends React.Component<Props,State>{
         return(
             <TouchableOpacity
                 activeOpacity={0.8}
-                onPress={()=>this.navigate('ClassListView',{
+                onPress={()=>RouteHelper.navigate('ClassListView',{
                     major:item.name,
                     gender:item.type,
                     transition: 'forHorizontal1',
@@ -186,95 +193,3 @@ export class ClassBookView extends React.Component<Props,State>{
         )
     };
 }
-
-const style = StyleSheet.create({
-    container:{
-        flex:1,
-    },
-    leftScrollView:{
-        width:60,
-        justifyContent:'center'
-    },
-    indicator:{
-        width:2,
-        height:20,
-
-        position:'absolute',
-        left:6,
-        top:15,
-    },
-    ListFooterComponent:{
-        width:WIDTH,
-        height:170,
-        justifyContent:'center',
-        marginLeft:WIDTH/2/2
-    },
-    leftArrayView:{
-        width:60,
-        height:50,
-        justifyContent:'center',
-        alignItems:'center',
-        flexDirection:'row'
-    },
-    leftLabelStyle:{
-        fontSize:14,
-    },
-    renderSectionHeader:{
-        width:WIDTH,
-        height:35,
-        justifyContent:'center',
-    },
-    renderSectionHeader1:{
-        width:WIDTH-60,
-        height:35,
-        justifyContent:'center',
-        alignItems:'center',
-    },
-    renderSectionHeaderTitle:{
-        fontSize:12,
-    },
-    renderItemTitle:{
-        width:WIDTH/3 +20,
-        height:80,
-        borderRadius:5,
-        flexDirection:'row',
-        alignItems:'center',
-        marginLeft:10,
-        marginBottom:10
-    },
-    itemTitle:{
-        marginBottom:5,
-        fontSize:13,
-    },
-    ItemView:{
-        marginLeft:10,
-    },
-    bookCount:{
-        fontSize:10,
-    },
-
-    bookItemImg:{
-        position:'absolute',
-        flexDirection:'row',
-        width:WIDTH/5-10,
-        alignItems:'flex-end',
-        right:0,
-        bottom:0,
-    },
-    bookItemImgView:{
-        position:'absolute',
-        bottom:0,
-        width:42,
-        height:60,
-        zIndex:99,
-        left:9
-    },
-    bookItemImgView1:{
-        width:32,
-        height:50
-    },
-    bookItemImgView2:{
-        width:28,
-        height:46
-    },
-});

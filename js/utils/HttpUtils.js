@@ -3,7 +3,6 @@
  * 封装一个可通用的网络请求工具类
  */
 
-import {LoadingUtils} from './LoadingUtils'
 
 export function ImageBody(response) {
     this.uri = response.uri;
@@ -25,8 +24,8 @@ export class HttpUtils {
      * @param loadingParams 加载框参数
      * @returns {Promise.<*>|Promise.<T>}
      */
-    static get(url: string, params, loadingParams) {
-        return this.request(url, params, loadingParams)
+    static get(url: string, params) {
+        return this.request(url, params)
     }
 
     /**
@@ -36,8 +35,8 @@ export class HttpUtils {
      * @param loadingParams 加载框参数
      * @returns {Promise.<*>|Promise.<T>}
      */
-    static post(url: string, params, loadingParams) {
-        return this.request(url, params, loadingParams, 'POST', 'form')
+    static post(url: string, params) {
+        return this.request(url, params, 'POST', 'form')
     }
 
     /**
@@ -47,8 +46,8 @@ export class HttpUtils {
      * @param loadingParams 加载框参数
      * @returns {Promise.<*>|Promise.<T>}
      */
-    static postJson(url: string, params, loadingParams) {
-        return this.request(url, params, loadingParams, 'POST', 'json')
+    static postJson(url: string, params) {
+        return this.request(url, params, 'POST', 'json')
     }
 
     /**
@@ -62,10 +61,6 @@ export class HttpUtils {
      */
     static request(url: string,
                    params,
-                   loadingParams = {
-                       show: true,
-                       hint: '加载中'
-                   },
                    method: string = 'GET',
                    type = 'form') {
         let body = null;
@@ -106,7 +101,6 @@ export class HttpUtils {
         if (!url.startsWith('http')) {
             url = this.host + url;
         }
-        loadingParams.show && LoadingUtils.show(loadingParams.hint);
         return Promise.race([new Promise((resolve, reject) => {
             fetch(url, {
                 method: method,
@@ -123,11 +117,9 @@ export class HttpUtils {
             }).catch(e => {
                 reject({code: -1, msg: `fetch进入catch:${JSON.stringify(e)}`})
             }).finally(() => {
-                loadingParams.show && LoadingUtils.hide();
             })
         }), new Promise((resolve, reject) => {
             setTimeout(() => {
-                loadingParams.show && LoadingUtils.hide();
                 reject({code: -1, msg: `${url}请求超时`})
             }, this.timeOut)
         })])

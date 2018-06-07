@@ -5,7 +5,7 @@ import React, {Component} from 'react';
 import {
     View,
     StyleSheet,
-    StatusBar
+    StatusBar,
 } from 'react-native';
 import {SafeAreaView} from 'react-navigation';
 import {observer,inject} from 'mobx-react';
@@ -13,46 +13,35 @@ import {observer,inject} from 'mobx-react';
 // import {ErrorView} from "./ErrorView";
 import BaseNavBar from './BaseNavBar'
 import {BaseError} from './index';
+import {Loading} from "./BaseLoading";
 
 type Props={
-
     store: any,
-    onErrorPress: void,
-    // navBar: any,
-    // title: string,
-    // hideLeft: boolean,
-    // leftPress: any,
-    // leftTitle: string,
-    // leftView: any,
-    // leftIcon: string | number,
-    // hideRight: boolean,
-    // rightPress: void,
-    // rightView: any,
-    // rightIcon: any,
-    // rightTitle: string,
-    // hasShadow: boolean,
+    onErrorPress: ()=>mixed,
+    onLoading:()=>mixed,
 }
 
 @inject('baseTheme')
 @observer
 export default class BaseContainer extends Component <Props>{
 
-    static defaultProps = {
-        hasShadow:false
-    };
 
-    // 构造
       constructor(props) {
         super(props);
         this.baseTheme = this.props.baseTheme;
       }
 
+    defaultPress = () => {
+        const {store} = this.props;
+        store.fetchAgain()
+    };
+
     renderContent() {
         const {store, children, onErrorPress} = this.props;
         if (!store) return children;
         const {isLoading, isError} = store;
-        if (isLoading) return <View/>;
-        if (isError) return <BaseError/>;
+        if (isLoading) return <Loading/>;
+        if (isError) return <BaseError onPress={onErrorPress || this.defaultPress}/>;
         return children;
     }
 
@@ -70,10 +59,11 @@ export default class BaseContainer extends Component <Props>{
 
     render() {
 
+        const {style} = this.props;
+
         return(
             <SafeAreaView
-                forceInset={{ top: 'always' }}
-                style={[styles.container,{backgroundColor:this.baseTheme.brightBackGroundColor}]}>
+                style={[styles.container,style, {backgroundColor:this.baseTheme.brightBackGroundColor}]}>
                 {/*{this.renderNavView()}*/}
                 {this.renderContent()}
                 <StatusBar
@@ -86,5 +76,7 @@ export default class BaseContainer extends Component <Props>{
 }
 
 const styles = StyleSheet.create({
-    container: {flex: 1}
+    container: {
+        flex: 1,
+    }
 });

@@ -5,7 +5,7 @@ import * as React from 'react';
 import CardStackStyleInterpolator from "react-navigation/src/views/StackView/StackViewStyleInterpolator";
 import {scaleSize} from "../utils/ScreenUtils";
 import {Image, StyleSheet} from "react-native";
-
+import {observer} from 'mobx-react';
 
 const StackTabItem = (stack:any,header:string) =>{
     return{
@@ -24,25 +24,28 @@ const StackTabItemConfig ={
         screenInterpolator:props=>{
             return CardStackStyleInterpolator.forHorizontal(props)
         }
-    })
+    }),
 };
 
 
 
-const StackItem = (stack:any,headerTitle:string|number) =>{
-
-    return{
-        screen:stack,
-        navigationOptions:({navigation})=>({
-            gesturesEnabled:true,
-            headerTitle:headerTitle,
-            headerBackTitleStyle:{
-                color:'#000'
-            },
-            headerTintColor:'#000'
-        })
-    }
-};
+// const StackItem = (stack:any,headerTitle:string|number,showBorderBottomWidth:boolean) =>{
+//
+//     return{
+//         screen:stack,
+//         navigationOptions:({navigation})=>({
+//             gesturesEnabled:true,
+//             headerTitle:headerTitle,
+//             headerBackTitleStyle:{
+//                 color:'#000'
+//             },
+//             headerTintColor:'#000',
+//             headerStyle:{
+//                 borderBottomWidth:showBorderBottomWidth?0:null
+//             }
+//         })
+//     }
+// };
 
 const TabBarItem =(title:string,selected:string|number,uncheck:string|number)=>{
     return{
@@ -73,5 +76,5 @@ const styles = StyleSheet.create({
 });
 
 export {
-    StackTabItem,StackTabItemConfig,StackItem,TabBarItem
+    StackTabItem,StackTabItemConfig,TabBarItem
 }

@@ -1,17 +1,17 @@
 /**
  * @flow
+ * loading组件
  */
 
 import * as React from 'react';
 import {observer} from 'mobx-react';
-import {Animated,View,StyleSheet,Easing} from 'react-native';
-import {BaseImage} from '../base';
+import {Animated,View,StyleSheet,Easing,Image} from 'react-native';
+import {BaseImage} from './index';
 import {scaleSize} from "../utils/ScreenUtils";
-import {brightColor} from "../base/BaseColor";
 
 type State={
-    bounceValue:Animated,
-    rotateValue:Animated
+    bounceValue:Animated.Value,
+    rotateValue:Animated.Value
 }
 
 @observer
@@ -42,11 +42,13 @@ export class Loading extends React.Component<any,State>{
             Animated.spring(this.state.bounceValue, {
                 toValue: 1,      //变化目标值，也没有变化
                 friction: 20,    //friction 摩擦系数，默认40
+                useNativeAnimations:true
             }),
             Animated.timing(this.state.rotateValue, {
                 toValue: 1,  //角度从0变1
-                duration: 1000,  //从0到1的时间
+                duration: 800,  //从0到1的时间
                 easing: Easing.out(Easing.linear),//线性变化，匀速旋转
+                useNativeAnimations:true
             }),
             //调用start启动动画,start可以回调一个函数,从而实现动画循环
         ]).start(()=>this.startAnimation());
@@ -55,6 +57,7 @@ export class Loading extends React.Component<any,State>{
     render(){
 
         return(
+            <View style={{ width: '100%', height: '100%',backgroundColor:'transparent'}}>
             <View style={style.loadingView}>
                 <View style={style.loadDialog}>
                     <Animated.Image
@@ -70,8 +73,10 @@ export class Loading extends React.Component<any,State>{
                                     })}]}]}
                         source={BaseImage.ic_svstatus_loading}
                     />
+
                 </View>
-            </View> : null
+            </View>
+            </View>: null
         )
     }
 }
@@ -87,19 +92,21 @@ const style = StyleSheet.create({
         height: 60,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: brightColor.brightTopTabBottomColor,
+        backgroundColor: '#F7F7F7',
         borderRadius: 10
     },
     loadingView:{
-        width:WIDTH,
-        height:HEIGHT,
+        // width: '100%',
+        // height: '100%',
+        flex:1,
         justifyContent:'center',
         alignItems:'center',
-        position:'absolute',
-        top:0,
-        left:0,
-        zIndex:99,
-        overflow:'hidden',
         backgroundColor:'transparent'
+        // position:'absolute',
+        // top:0,
+        // left:0,
+        // zIndex:99,
+        // overflow:'hidden',
+        // backgroundColor:'transparent'
     },
 });

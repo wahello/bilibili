@@ -3,6 +3,7 @@ import {BaseContainer} from '../../base';
 import {observer,inject} from 'mobx-react';
 import {toJS} from 'mobx';
 import {ClassBookView} from "./ClassBookView";
+import SplashScreen from 'react-native-splash-screen'
 
 @inject('bookClassStore')
 @observer
@@ -13,8 +14,11 @@ export class BookScreen extends React.Component{
         super(props);
         this.bookClassStore = this.props.bookClassStore;
     }
-
     
+    componentDidMount() {
+        SplashScreen.hide();
+        this.bookClassStore.fetchData()
+    }
 
     render(){
 
@@ -22,7 +26,8 @@ export class BookScreen extends React.Component{
         let sections = toJS(this.bookClassStore.data);
 
         return(
-            <BaseContainer store={this.bookClassStore}>
+            <BaseContainer
+                store={this.bookClassStore}>
                 <ClassBookView
                     navigate={navigate}
                     sections={sections}/>
@@ -30,3 +35,4 @@ export class BookScreen extends React.Component{
         )
     }
 }
+

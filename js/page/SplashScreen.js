@@ -4,13 +4,19 @@
 import React from 'react';
 import {Image,StyleSheet} from 'react-native';
 import {BaseImage} from '../base';
+import SplashScreen from 'react-native-splash-screen'
 
-export default class SplashScreen extends React.Component<any,any>{
+
+
+export default class SplashScreen1 extends React.Component<any,any>{
 
     componentDidMount() {
-        this.timer = setTimeout(()=>{
-            this.props.navigation.navigate('Tab')
-        },2000)
+
+        SplashScreen.hide();
+        this.props.navigation.navigate('Tab')
+        // this.timer = setTimeout(()=>{
+        //
+        // },2000)
     }
 
     componentWillUnmount() {

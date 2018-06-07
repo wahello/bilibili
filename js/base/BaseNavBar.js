@@ -5,19 +5,20 @@ import React from 'react';
 import {View,Text,TouchableOpacity,Image,StyleSheet,StatusBar} from 'react-native';
 import {observer,inject} from 'mobx-react';
 import {BaseImage} from '../base/index';
+import {Style} from "../utils/type";
 
 type Props={
 
-    style:any,
+    style:Style,
     title:string,
-    titleStyle:any,
+    titleStyle:Style,
     rightTitle:string,
     rightIcon: string | number,
     showGoBack:boolean,
-    renderRightItem: void,
-    renderTitleView: void,
-    onBack: void,
-    onRight: void,
+    renderRightItem: ?()=>mixed=>React.Element<any>,
+    renderTitleView: ?()=>mixed=>React.Element<any>,
+    onBack: ()=>mixed,
+    onRight: ()=>mixed,
 }
 
 @inject('baseTheme')

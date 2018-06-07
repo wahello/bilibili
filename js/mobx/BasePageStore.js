@@ -5,7 +5,7 @@ import {observable, action} from 'mobx'
 import {BaseString} from '../base';
 
 interface BaseStore {
-    data:any,
+    data:Array<any>,
     isLoading:boolean,
     isError:boolean,
     loadingMsg:string,
@@ -34,20 +34,18 @@ export class BasePageStore implements BaseStore{
         this.data = data;
     };
 
-    @action setError=(isError:boolean = true,errorMsg:string = BaseString.ERROR_TEXT,errorPress:()=>void=null)=>{
+    @action setError=(isError:boolean = true,errorPress:()=>void)=>{
         if (this.isLoading) {
-            this.isLoading = false
+            this.isLoading = false;
         }
         this.isError = isError;
-        this.errorMsg = errorMsg;
         this.errorPress = errorPress;
     };
 
-    @action setLoading(isLoading: boolean = true, loadingMsg: string =  BaseString.LOADING_TITLE,) {
+    @action setLoading(isLoading: boolean = true) {
         if (this.isError) {
             this.isError = false
         }
         this.isLoading = isLoading;
-        this.loadingMsg = loadingMsg;
     }
 }
