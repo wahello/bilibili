@@ -3,7 +3,10 @@ import {Text,Image,StyleSheet,TouchableOpacity} from 'react-native';
 import {BaseLikeScreen} from "./BaseLikeScreen";
 import {BaseString,BaseImage} from '../../base/'
 import {scaleSize} from "../../utils/ScreenUtils";
+import {observer,inject} from 'mobx-react';
 
+@inject('baseTheme')
+@observer
 export default class UpdateBookScreen extends React.Component{
 
     render(){
@@ -11,8 +14,10 @@ export default class UpdateBookScreen extends React.Component{
         return(
             <BaseLikeScreen>
                 <Image source={BaseImage.bg_dafalt} style={style.bg_dafalt}/>
-                <TouchableOpacity style={style.paper}>
-                    <Text style={{color:'#fff'}} onPress={()=>this.props.navigate('Book')}>{BaseString.ADD_BOOK}</Text>
+                <TouchableOpacity
+                    onPress={()=>this.props.baseTheme.changeTheme()}
+                    style={style.paper}>
+                    <Text style={{color:'#fff'}}>{BaseString.ADD_BOOK}</Text>
                 </TouchableOpacity>
             </BaseLikeScreen>
         )

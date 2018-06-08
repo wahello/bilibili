@@ -37,7 +37,9 @@ export  class ClassListView extends React.Component{
     render(){
 
         return(
-            <View style={{flex:1}}>
+            <BaseContainer
+                showGoBack={true}
+                title={this.majo}>
 
                 {this.bookClassListStore.showTopType?
                     <ClassListViewTopView
@@ -54,7 +56,7 @@ export  class ClassListView extends React.Component{
                         data={this.bookClassListStore.data.slice(0)}
                         onEndReached={this.onEndReached}/>
 
-            </View>
+            </BaseContainer>
         )
     }
     onChoose(item){

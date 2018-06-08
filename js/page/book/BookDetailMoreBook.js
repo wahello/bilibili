@@ -8,6 +8,7 @@ import {observer,inject} from 'mobx-react';
 import {ImageView} from "../../component/ImageView";
 import {BaseString} from '../../base';
 import {BaseApi} from "../../assest/api";
+import {RouteHelper} from 'react-navigation-easy-helper';
 
 type Props={
     recommend_data:Array<any>
@@ -23,7 +24,8 @@ export class BookDetailMoreBook extends React.Component<Props,any>{
         this.bookDetailStore= this.props.bookDetailStore;
         this.brightBackGroundColor = this.props.baseTheme.brightBackGroundColor;
         this.brightTextColor = this.props.baseTheme.brightTextColor;
-        brightDefaultColor= this.props.baseTheme.brightDefaultColor;
+        this.brightDefaultColor= this.props.baseTheme.brightDefaultColor;
+        this.brightNavTextColor = this.props.baseTheme.brightNavTextColor;
     }
 
     render(){
@@ -36,7 +38,7 @@ export class BookDetailMoreBook extends React.Component<Props,any>{
                     <Text style={[style.evaluationViewTitle,{
                         color: this.brightNavTextColor,
                     }]}>{BaseString.MAY_LIKE}</Text>
-                    <TouchableOpacity style={style.lookMoreView}><Text style={style.lookMoreTitle}>{BaseString.LOOK_MORE}></Text></TouchableOpacity>
+                    <TouchableOpacity style={style.lookMoreView}><Text style={[style.lookMoreTitle,{color:this.brightNavTextColor}]}>{BaseString.LOOK_MORE}></Text></TouchableOpacity>
                 </View>
                 <FlatList
                     contentContainerStyle={{justifyContent:'center',alignItems:'center',marginBottom:30}}
@@ -65,7 +67,8 @@ export class BookDetailMoreBook extends React.Component<Props,any>{
         return(
             <TouchableOpacity
                 activeOpacity={0.9}
-                onPress={()=>this.bookDetailStore.fetchBookDetail(recommend_id)}
+                onPress={()=>RouteHelper.replace('BookDetail',{id:recommend_id,bookTitle:recommend_title})}
+                //onPress={()=>this.bookDetailStore.fetchBookDetail(recommend_id)}
                 style={style.recommend_book}>
                 <ImageView uri={recommend_image} styles={[style.recommend_image,{ backgroundColor:this.brightDefaultColor,}]}/>
                 <Text style={{fontSize:12,width:WIDTH/3-40,color:this.brightTextColor}} numberOfLines={1}>{recommend_title}</Text>

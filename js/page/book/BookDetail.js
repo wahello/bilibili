@@ -10,10 +10,8 @@ import {style} from "./Styles";
 import {BookDetailComments} from './BookDetailComments';
 import {BookDetailMoreBook} from './BookDetailMoreBook';
 import {RouteHelper} from 'react-navigation-easy-helper';
-import {createDrawerNavigator} from "react-navigation";
-import {BookDirectoryView} from "./BookDirectoryView";
-import {confing} from "../../route/StackRoute";
-
+import SideMenu from 'react-native-side-menu';
+import {BaseContainer} from "../../base";
 @inject('bookDetailStore','baseTheme',)
 @observer
 export class BookDetail extends React.Component{
@@ -26,6 +24,7 @@ export class BookDetail extends React.Component{
         this.bookTitle = this.props.navigation.state.params.bookTitle;
         this.bookDetailStore = this.props.bookDetailStore
         this.brightBackGroundColor = this.props.baseTheme.brightBackGroundColor;
+        this.brightNavTextColor = this.props.baseTheme.brightNavTextColor;
     }
 
     componentDidMount() {
@@ -38,36 +37,45 @@ export class BookDetail extends React.Component{
 
     render(){
 
-
         if (this.bookDetailStore.isLoading){
             return <BookDetailLoading/>
         }
 
         return(
-            <View style={{flex:1,backgroundColor: this.brightBackGroundColor}}>
 
-                <ScrollView
-                    style={{flex:1}}
-                    showsVerticalScrollIndicator={false}>
-                    <BookDetailTopView/>
-                    <BookDetailComments/>
-                    <BookDetailMoreBook/>
+            <SideMenu
+                menu={<View style={{flex:1}}/>}
+                menuPosition='right'>
+                <BaseContainer
+                    showGoBack={true}
+                    title={this.bookTitle}>
 
-                    {this.bookDetailStore.showCopyright?
-                        <View>
-                            <Text style={style.IntroductionTitle}>图书信息</Text>
-                            <View style={{flexDirection:'row',marginLeft:30}}>
-                                <Text style={{color:this.brightNavTextColor}}>版权:</Text>
-                                <Text style={{color:this.brightNavTextColor}}>{this.bookDetailStore.copyright}</Text>
+                    <ScrollView
+                        style={{flex:1}}
+                        showsVerticalScrollIndicator={false}>
+                        <BookDetailTopView/>
+                        <BookDetailComments/>
+                        <BookDetailMoreBook/>
+
+                        {this.bookDetailStore.showCopyright?
+                            <View>
+                                <Text style={[style.IntroductionTitle,{color:this.brightNavTextColor}]}>图书信息</Text>
+                                <View style={{flexDirection:'row',marginLeft:30}}>
+                                    <Text style={{color:this.brightNavTextColor}}>版权:</Text>
+                                    <Text style={{color:this.brightNavTextColor}}>{this.bookDetailStore.copyright}</Text>
+                                </View>
                             </View>
-                        </View>
-                        :null}
-                    <View style={{width:WIDTH,height:100}}/>
-                </ScrollView>
-                <BookDetailBottomView
-                    startRead={this.startRead}
+                            :null}
+                        <View style={{width:WIDTH,height:100}}/>
+                    </ScrollView>
+                    <BookDetailBottomView
+                        startRead={this.startRead}
                     />
-            </View>
+
+                </BaseContainer>
+            </SideMenu>
+
+
         )
     }
 

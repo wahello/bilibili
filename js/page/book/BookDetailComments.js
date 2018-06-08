@@ -30,6 +30,7 @@ export class BookDetailComments extends React.Component<Props,any>{
         this.bookDetailStore= this.props.bookDetailStore;
         this.brightBackGroundColor = this.props.baseTheme.brightBackGroundColor;
         this.brightTextColor = this.props.baseTheme.brightTextColor;
+        this.brightNavTextColor = this.props.baseTheme.brightNavTextColor;
     }
 
     render(){
@@ -38,7 +39,7 @@ export class BookDetailComments extends React.Component<Props,any>{
 
         return(
             <View style={style.evaluationView}>
-                <Text style={style.IntroductionTitle}>{BaseString.HOE_SHORT_COMMEND}</Text>
+                <Text style={[style.IntroductionTitle,{color:this.brightNavTextColor}]}>{BaseString.HOE_SHORT_COMMEND}</Text>
                 {evaluation_data.map((item,i)=>{
 
                     let context = ClearBr(item.content);
@@ -87,7 +88,7 @@ export class BookDetailComments extends React.Component<Props,any>{
                     onPress={()=>RouteHelper.navigate('BookComments',{id:this.props.id})}
                     activeOpacity={1}
                     style={style.allEvaluation}>
-                    <Text style={style.evaluation_total}>{BaseString.ALL_SHORT_COMMEND}{evaluation_total}条</Text>
+                    <Text style={[style.evaluation_total,{color:this.brightNavTextColor}]}>{BaseString.ALL_SHORT_COMMEND}{evaluation_total}条</Text>
                 </TouchableOpacity>
 
                 <View style={[style.bookLoadBottomView,{width:WIDTH-60}]}/>

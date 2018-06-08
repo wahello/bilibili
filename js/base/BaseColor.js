@@ -52,7 +52,7 @@ class DarkColor implements ThemeColor{
     brightBackGroundColor='#202020';
     brightBackGroundImage='';
     brightNavBackGroundColor='#303030';
-    brightTextColor='#FBFBFB';
+    brightTextColor='#FFFFFF';
     brightNavTextColor='#FBFBFB';
     brightItemSeparatorComponent='#FBFBFB';
     brightTabBarBackGroundColor='#202020';

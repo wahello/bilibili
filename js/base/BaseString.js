@@ -1,6 +1,7 @@
 /**
  * @flow
  */
+    import BaseImage from '../base/BaseImage';
 
     const TAB_BAR_BOTTOM_LABEL_LIKE:string ='书架';
     const TAB_BAR_BOTTOM_LABEL_BOOK:string ='分类';
@@ -55,7 +56,18 @@
         {title:'追书人气',number:''},
         {title:'读者存留',number:''},
         {title:'社区帖子',number:''},
-    ]
+    ];
+
+    const BOOK_LOADING_GIF = [
+        BaseImage.loading_gif_one,
+        null,
+        BaseImage.loading_gif_two,
+        null,
+        BaseImage.loading_gif_three,
+        null,
+        BaseImage.loading_gif_four,
+        null
+    ];
 
 export {
     TAB_BAR_BOTTOM_LABEL_LIKE,TAB_BAR_BOTTOM_LABEL_BOOK,TAB_BAR_BOTTOM_LABEL_MINE,
@@ -63,5 +75,6 @@ export {
     NO_HISTORY,LIKE_BOOK,BIN_TITLE,ERROR_TEXT,BOOK_CLASS_ARRAY,ADD_BOOK,BOOK_MINE_UPDATE,
     BOOK_MINE_HISTORY,BOOK_MINE_LIKE,BOOK_TOP_CLASS_TYPE,BOOK_DETAIL_CLASS,RECOMMEND,
     PEOPEL_COMMEND,INTRODUCTION,NEW_CHAPTER,HOE_SHORT_COMMEND,ALL_SHORT_COMMEND,MAY_LIKE,
-    LOOK_MORE,SENTIMENT,READED_RETAINED,WAN,LOADING_OVER,LOOK_ALL_CHARTER
+    LOOK_MORE,SENTIMENT,READED_RETAINED,WAN,LOADING_OVER,LOOK_ALL_CHARTER,BOOK_DETAIL_CLASS_TWO,
+    BOOK_LOADING_GIF
 }

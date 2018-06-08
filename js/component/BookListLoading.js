@@ -3,6 +3,7 @@ import {View} from 'react-native';
 import {BaseString} from "../base";
 import {inject, observer} from "mobx-react";
 import {style} from "../page/book/Styles";
+import {Loading,GifLoading} from "../base/BaseLoading";
 
 @inject('baseTheme')
 @observer
@@ -18,6 +19,8 @@ export class BookListLoading extends React.Component{
     render(){
         return(
             <View style={{flex:1 , backgroundColor:this.brightBackGroundColor}}>
+
+                <Loading/>
 
                 {
                     BaseString.BOOK_TOP_CLASS_TYPE.map((item,i)=>{

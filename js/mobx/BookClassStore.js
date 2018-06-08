@@ -19,7 +19,10 @@ export default class BookClassStore extends BasePageStore implements BookClass{
         HttpUtils.get(BaseApi.BookBase1+BookApi.statistics,null)
             .then(action((res)=>{
                 this.data=dealArray(res).slice(0);
-                this.setLoading(false);
+                setTimeout(()=>{
+                    this.setLoading(false);
+                },2000)
+
             })).catch((error)=>{
                 this.data.length ===0?this.setError(true,error.msg):Toast.fail(BaseString.ERROR_TEXT)
         })

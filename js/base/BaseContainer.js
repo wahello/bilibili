@@ -13,7 +13,8 @@ import {observer,inject} from 'mobx-react';
 // import {ErrorView} from "./ErrorView";
 import BaseNavBar from './BaseNavBar'
 import {BaseError} from './index';
-import {Loading} from "./BaseLoading";
+import {Loading,GifLoading} from "./BaseLoading";
+
 
 type Props={
     store: any,
@@ -40,7 +41,7 @@ export default class BaseContainer extends Component <Props>{
         const {store, children, onErrorPress} = this.props;
         if (!store) return children;
         const {isLoading, isError} = store;
-        if (isLoading) return <Loading/>;
+        if (isLoading) return <GifLoading/>;
         if (isError) return <BaseError onPress={onErrorPress || this.defaultPress}/>;
         return children;
     }
@@ -62,14 +63,14 @@ export default class BaseContainer extends Component <Props>{
         const {style} = this.props;
 
         return(
-            <SafeAreaView
+            <View
                 style={[styles.container,style, {backgroundColor:this.baseTheme.brightBackGroundColor}]}>
-                {/*{this.renderNavView()}*/}
+                {this.renderNavView()}
                 {this.renderContent()}
                 <StatusBar
                     backgroundColor='#FFFFFF'
                     barStyle='dark-content'/>
-            </SafeAreaView>
+            </View>
             )
 
     }

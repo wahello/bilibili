@@ -105,7 +105,10 @@ export default class BookDetailStore extends BasePageStore implements BookDetail
                 this.originalPriceText = pricr_data.doc.originalPriceText;
                 this.bookTitle = data.title;
                 this.chapterFetchData(original_data[0]._id,data);
-                this.setLoading(false)
+                setTimeout(()=>{
+                    this.setLoading(false)
+                },1500);
+
             })
         }catch (e) {
             console.log(e);

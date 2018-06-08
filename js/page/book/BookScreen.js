@@ -1,18 +1,20 @@
 import * as React from 'react';
-import {BaseContainer} from '../../base';
+import {BaseContainer, BaseString} from '../../base';
 import {observer,inject} from 'mobx-react';
 import {toJS} from 'mobx';
 import {ClassBookView} from "./ClassBookView";
 import SplashScreen from 'react-native-splash-screen'
 
-@inject('bookClassStore')
+@inject('bookClassStore','baseTheme')
 @observer
 export class BookScreen extends React.Component{
+
 
     // 构造
     constructor(props) {
         super(props);
         this.bookClassStore = this.props.bookClassStore;
+        this.baseTheme = this.props.baseTheme;
     }
     
     componentDidMount() {
@@ -27,6 +29,7 @@ export class BookScreen extends React.Component{
 
         return(
             <BaseContainer
+                title={BaseString.TAB_BAR_HEADER_BOOK}
                 store={this.bookClassStore}>
                 <ClassBookView
                     navigate={navigate}

@@ -108,6 +108,10 @@ export const style = StyleSheet.create({
         shadowRadius: 5,
         elevation: 10,
     },
+    leftBookView1:{
+        width:scaleSize(160),
+        height:scaleSize(220),
+    },
     rightBookView:{
         marginLeft:20,
         justifyContent:'flex-end',
@@ -164,7 +168,23 @@ export const style = StyleSheet.create({
         height:scaleSize(300),
         borderRadius:5,
         marginLeft:scaleSize(44),
+        shadowOffset: {width: 0, height: 0},
+        shadowOpacity: 1,
+        shadowRadius: 5,
+        elevation: 10,
     },
+    bookDetailViewTopLeftImg1:{
+        width:scaleSize(210),
+        height:scaleSize(300),
+        borderRadius:5,
+        marginLeft:scaleSize(44),
+        elevation: 10,
+        shadowOffset: {width: 10, height: 10},
+        shadowColor: 'black',
+        shadowOpacity: 1,
+        shadowRadius: 5
+    },
+
     bookDetailViewTopTextView:{
         width:WIDTH/2,
         height:scaleSize(300),
@@ -215,8 +235,7 @@ export const style = StyleSheet.create({
         left:0,
         width:WIDTH,
         flexDirection:'row',
-        height:isIPhoneX?80:60,
-
+        height:isIPhoneX?60:60,
     },
     ChaseView:{
         width:WIDTH/2,
@@ -229,7 +248,8 @@ export const style = StyleSheet.create({
         height:40,
         justifyContent:'center',
         alignItems:'center',
-        borderRadius:40
+        borderRadius:40,
+        backgroundColor:'#9a9a9a'
     },
     dotChaseTitle:{
         fontSize:18,

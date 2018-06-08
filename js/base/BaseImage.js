@@ -31,6 +31,13 @@ class BaseImage {
     reader_background_brown_big_img:string=require('../assest/icon/reader_background_brown_big_img.jpg');
     ad_splsh_bg:string=require('../assest/icon/ad_splsh_bg.jpg');
     back:string=require('../assest/icon/back.png');
+    back_dark:string = require('../assest/icon/back_dark.png');
+    back_bright:string = require('../assest/icon/back_bright.png');
+
+    loading_gif_one:string=require('../assest/icon/loading_1.png');
+    loading_gif_two:string=require('../assest/icon/loading_2.png');
+    loading_gif_three:string=require('../assest/icon/loading_3.png');
+    loading_gif_four:string =require('../assest/icon/loading_4.png');
 
 }
 

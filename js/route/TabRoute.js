@@ -6,32 +6,32 @@ import {createBottomTabNavigator, createStackNavigator, createSwitchNavigator,cr
 import {BookScreen} from '../page/book/index';
 import {LikeScreen} from '../page/like/index';
 import {MineScreen} from '../page/mine/index';
-import {observer} from "mobx-react";
+import {observer,inject} from "mobx-react";
 import {BaseString, BaseTheme,BaseStack} from "../base";
 import BaseImage from "../base/BaseImage";
 import SplashScreen from "../page/SplashScreen";
 import StackRoute from './StackRoute';
 import {configRoute} from 'react-navigation-easy-helper';
+import {ClassListView} from "../page/book/ClassListView";
+import {BookDetail} from "../page/book/BookDetail";
 
 const confing = {
     gesturesEnabled:true,
     headerBackTitleStyle:{color:'#000'},
     headerTintColor:'#000',
+
 };
+
 
 export const Book = createStackNavigator(
     configRoute({
-        BookScreen:{screen:BookScreen,navigationOptions:({navigation})=>({
-                headerTitle:BaseString.TAB_BAR_HEADER_BOOK,
-                headerStyle:{
-                    backgroundColor:new BaseTheme().brightNavBackGroundColor
-                }
-            })},
-
+        BookScreen:{
+            screen:BookScreen
+        },
         ...StackRoute,
     }),
     BaseStack.StackTabItemConfig
-);
+)
 
 export const Like = createStackNavigator(
     configRoute({
@@ -42,7 +42,7 @@ export const Like = createStackNavigator(
                     backgroundColor:new BaseTheme().brightNavBackGroundColor
                 }
             })},
-        ...StackRoute,
+
     }),
     BaseStack.StackTabItemConfig
 );
@@ -55,7 +55,7 @@ export const Mine = createStackNavigator(
                         backgroundColor:new BaseTheme().brightNavBackGroundColor
                     }
                 })},
-            ...StackRoute,
+
         }),
     BaseStack.StackTabItemConfig
 );

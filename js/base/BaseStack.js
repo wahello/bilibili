@@ -18,7 +18,7 @@ const StackTabItem = (stack:any,header:string) =>{
 };
 
 const StackTabItemConfig ={
-    headerMode: 'float',
+    headerMode: 'none',
     headerTransitionPreset:'uikit',
     transitionConfig:()=>({
         screenInterpolator:props=>{

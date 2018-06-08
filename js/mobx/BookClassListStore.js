@@ -47,7 +47,10 @@ export default class bookClassListStore extends BasePageStore implements BookCla
         HttpUtils.get(url, params).then(action(data=>{
             this.data = data.books;
             this.total = data.total;
-            this.setLoading(false)
+            setTimeout(()=>{
+                this.setLoading(false)
+            },1500);
+
         })).catch((e)=>{
             console.log(e);
             this.data.length===0?this.setError(true):Toast.fail(BaseString.ERROR_TEXT)
@@ -77,9 +80,13 @@ export default class bookClassListStore extends BasePageStore implements BookCla
 
     @action fetchClassSmall=(gender,major)=>{
 
+
         if (gender ==='picture' || gender==='press'){
             this.showTopType = false;
+        }else {
+            this.showTopType= true;
         }
+
         let url = BaseApi.BookBase1+BookApi.lv2;
         HttpUtils.get(url).then(action(data=>{
             this.dealArray(data,gender,major);

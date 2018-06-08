@@ -3,7 +3,8 @@ import {View,Image, Text,TouchableOpacity} from 'react-native';
 import {BaseImage} from "../base";
 import React from "react";
 import {style} from "../page/book/Styles";
-import {BaseString} from '../base'
+import {BaseString,BaseContainer} from '../base';
+import {GifLoading, Loading} from "../base/BaseLoading";
 
 @inject('baseTheme')
 @observer
@@ -22,10 +23,13 @@ export  class BookDetailLoading extends React.Component{
 
     render(){
         return(
-            <View style={{flex:1,backgroundColor:this.brightBackGroundColor}}>
+            <BaseContainer
+            >
+
+                <Loading/>
 
                 <View style={style.bookDetailViewTop}>
-                    <View style={[style.bookDetailViewTopLeftImg,{ backgroundColor:this.brightDefaultColor,}]}/>
+                    <View style={[style.bookDetailViewTopLeftImg,{ backgroundColor:this.brightDefaultColor, shadowColor: this.brightDefaultColor}]}/>
                     <View style={style.bookDetailViewTopTextView}>
                         <View style={[style.bookDetailViewTopRight,{ backgroundColor:this.brightDefaultColor}]}/>
                         <View style={{flexDirection:'row',height:40,alignItems:'center'}}>
@@ -64,7 +68,7 @@ export  class BookDetailLoading extends React.Component{
                 </View>
 
                 <View style={style.IntroductionView}>
-                    <Text style={[style.IntroductionTitle,{ color:this.brightNavTextColor}]}>简介</Text>
+                    <Text style={[style.IntroductionTitle,{ color:this.brightNavTextColor}]}>{BaseString.INTRODUCTION}</Text>
                     <View style={[style.IntroductionViewItem,{backgroundColor:this.brightDefaultColor}]}/>
                     <View style={[style.IntroductionViewItem,{width:WIDTH-80, backgroundColor:this.brightDefaultColor}]}/>
                     <View style={[style.IntroductionViewItem,{width:WIDTH-100,backgroundColor:this.brightDefaultColor}]}/>
@@ -72,7 +76,7 @@ export  class BookDetailLoading extends React.Component{
                 </View>
 
                 <BookDetailBottomView/>
-            </View>
+            </BaseContainer>
         )
     }
 }
@@ -82,13 +86,14 @@ export  class BookDetailLoading extends React.Component{
 export class BookDetailBottomView extends React.Component{
 
     render(){
+
         return(
             <View style={[style.bookBottomView,{ backgroundColor:this.props.baseTheme.brightNavBackGroundColor,}]}>
                 <View style={style.ChaseView}>
                     <TouchableOpacity
                         activeOpacity={0.9}
                         style={style.dotChaseView}>
-                        <Text style={style.dotChaseTitle}>+ 追更新</Text>
+                        <Text style={[style.dotChaseTitle,{color:'#fff'}]}>+ 追更新</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={style.ChaseView}>

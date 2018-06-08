@@ -5,9 +5,10 @@
 
 import * as React from 'react';
 import {observer} from 'mobx-react';
-import {Animated,View,StyleSheet,Easing,Image} from 'react-native';
-import {BaseImage} from './index';
+import {Animated,View,StyleSheet,Easing,Image, Text} from 'react-native';
+import {BaseImage,BaseString} from './index';
 import {scaleSize} from "../utils/ScreenUtils";
+import BouncingPreloader from '../component/BouncingPreloader';
 
 type State={
     bounceValue:Animated.Value,
@@ -57,7 +58,7 @@ export class Loading extends React.Component<any,State>{
     render(){
 
         return(
-            <View style={{ width: '100%', height: '100%',backgroundColor:'transparent'}}>
+            <View style={{ width:'100%', height:'100%',backgroundColor:'rgba(0,0,0,0)',position:'absolute',top:0,zIndex:99}}>
             <View style={style.loadingView}>
                 <View style={style.loadDialog}>
                     <Animated.Image
@@ -93,20 +94,36 @@ const style = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#F7F7F7',
-        borderRadius: 10
+        borderRadius: 10,
+        marginBottom:100
     },
     loadingView:{
-        // width: '100%',
-        // height: '100%',
         flex:1,
         justifyContent:'center',
         alignItems:'center',
-        backgroundColor:'transparent'
-        // position:'absolute',
-        // top:0,
-        // left:0,
-        // zIndex:99,
-        // overflow:'hidden',
-        // backgroundColor:'transparent'
+        backgroundColor:'transparent',
+
     },
 });
+
+
+export class GifLoading extends React.Component{
+
+    render(){
+        return(
+            <View style={{ width:'100%', height:'100%',backgroundColor:'rgba(0,0,0,0)',position:'absolute',top:0,zIndex:99}}>
+                <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+                    <BouncingPreloader
+                        leftRotation='0deg'
+                        rightRotation='0deg'
+                        leftDistance={0}
+                        rightDistance={0}
+                        icons={BaseString.BOOK_LOADING_GIF}
+                        speed={100}
+                    />
+                </View>
+            </View>
+        )
+    }
+
+}

@@ -6,6 +6,7 @@ import {View,Text,TouchableOpacity,Image,StyleSheet,StatusBar} from 'react-nativ
 import {observer,inject} from 'mobx-react';
 import {BaseImage} from '../base/index';
 import {Style} from "../utils/type";
+import MyBackButton from '../component/BackComponent';
 
 type Props={
 
@@ -34,8 +35,12 @@ export default class BaseNavBar extends React.Component<Props>{
       }
 
     static defaultProps = {
-        showGoBack: true,
+        showGoBack: false,
     };
+
+    componentDidUpdate() {
+        StatusBar.setBarStyle(this.baseTheme.brightStatusBarStyle)
+    }
 
     render() {
         const {
@@ -51,17 +56,23 @@ export default class BaseNavBar extends React.Component<Props>{
             renderTitleView,
         } = this.props;
 
+
+
         return (
             <View style={[
                 styles.header,
                 style,{
-                    height: 44+ this.top,
+                    height: 44+this.top,
                     paddingTop: this.top,
                     backgroundColor: this.baseTheme.brightNavBackGroundColor,
                 }
             ]}>
                 <StatusBar barStyle={this.baseTheme.brightStatusBarStyle}/>
-                {showGoBack && <LeftItem onPress={onBack} />}
+                {showGoBack && <LeftItem
+                    top={this.top}
+                    source={this.baseTheme.isDark?BaseImage.back_bright:BaseImage.back_dark}
+                    color={this.baseTheme.brightNavTextColor}
+                />}
                 {renderTitleView || <Text style={[styles.title, titleStyle,{color: this.baseTheme.brightNavTextColor,}]}>{title || ''}</Text>}
                 {renderTitleView && renderTitleView()}
                 {rightTitle && <RightItem text={rightTitle} onPress={onRight} />}
@@ -80,20 +91,23 @@ export default class BaseNavBar extends React.Component<Props>{
 
 }
 
-const LeftItem = ({onPress}) => {
+
+const LeftItem = (props) => {
     return (
-        <TouchableOpacity
+        <MyBackButton
             activeOpacity={0.75}
-            style={[styles.leftItem,{top: this.top,}]}
-            onPress={onPress}>
+            style={[styles.leftItem,{top: props.top}]}>
             <Image
                 style={{width: 20, height: 20}}
-                source={BaseImage.back}
+                source={props.source}
                 resizeMode="contain"
             />
-        </TouchableOpacity>
+            <Text style={{color:props.color}}>返回</Text>
+        </MyBackButton>
     );
 };
+
+
 
 const RightItem = ({onPress, text}) => {
     return (
@@ -137,6 +151,8 @@ const styles = StyleSheet.create({
         width: 60,
         paddingLeft: 5,
         justifyContent: 'center',
+        flexDirection:'row',
+        alignItems:'center'
     },
     rightItem: {
         position: 'absolute',

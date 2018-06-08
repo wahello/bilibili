@@ -8,7 +8,9 @@ import {style} from "./Styles";
 import {observer,inject} from 'mobx-react';
 import {ImageView} from "../../component/ImageView";
 import StarRating from 'react-native-star-rating';
-import {BaseString} from '../../base'
+import {BaseString} from '../../base';
+import {Card} from 'react-native-ui-lib';
+import {scaleSize} from "../../utils/ScreenUtils";
 
 type Props = {
     cover:string,
@@ -54,7 +56,7 @@ export class BookDetailTopView extends React.Component<Props,any>{
 
             <View>
                 <View style={style.bookDetailViewTop}>
-                    <ImageView uri={cover} styles={[style.bookDetailViewTopLeftImg,{ backgroundColor:this.brightDefaultColor}]}/>
+                    <ImageView uri={cover} styles={[style.bookDetailViewTopLeftImg1,{ backgroundColor:this.brightDefaultColor}]}/>
                     <View style={style.bookDetailViewTopTextView}>
                         <Text style={[style.bookDetailViewTopTitleRight,{color: this.brightNavTextColor}]} numberOfLines={1}>{title}</Text>
                         <View style={{flexDirection:'row',height:40,alignItems:'center'}}>
@@ -120,7 +122,7 @@ export class BookDetailTopView extends React.Component<Props,any>{
                     :null}
 
                 <View style={style.IntroductionView1}>
-                    <Text style={style.IntroductionTitle}>{BaseString.INTRODUCTION}</Text>
+                    <Text style={[style.IntroductionTitle,{color:this.brightNavTextColor}]}>{BaseString.INTRODUCTION}</Text>
                     <View style={style.longIntroView}>
                         <Text numberOfLines={5} style={[style.longIntro,{color:this.brightNavTextColor,}]}>{longIntro}</Text>
                     </View>
@@ -128,13 +130,13 @@ export class BookDetailTopView extends React.Component<Props,any>{
                 </View>
 
                 <View style={style.IntroductionView1}>
-                    <Text style={style.IntroductionTitle}>{BaseString.NEW_CHAPTER}</Text>
-                    <View style={{marginLeft:30}}>
-                        <Text style={style.lastChapter}>{lastChapter}</Text>
+                    <Text style={[style.IntroductionTitle,{color:this.brightNavTextColor}]}>{BaseString.NEW_CHAPTER}</Text>
+                    <View style={{marginLeft:30,}}>
+                        <Text style={[style.lastChapter,{color:this.brightNavTextColor}]}>{lastChapter}</Text>
                     </View>
-                    <View style={style.longIntroView}>
-                        <Text style={{marginTop:20,fontSize:16,color:this.brightTextColor}} onPress={()=>this.props.navigation.openDrawer()}>{BaseString.LOOK_ALL_CHARTER}</Text>
-                    </View>
+                    {/*<View style={style.longIntroView}>*/}
+                        {/*<Text style={{marginTop:20,fontSize:16,color:this.brightTextColor}} onPress={()=>this.props.navigation.openDrawer()}>{BaseString.LOOK_ALL_CHARTER}</Text>*/}
+                    {/*</View>*/}
                     <View style={[style.bookLoadBottomView,{width:WIDTH-60}]}/>
                 </View>
             </View>

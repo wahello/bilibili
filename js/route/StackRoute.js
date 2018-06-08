@@ -6,11 +6,15 @@ import {ClassListView} from '../page/book/ClassListView'
 import {BookDetail} from '../page/book/BookDetail';
 import {createDrawerNavigator} from "react-navigation";
 import {BookDirectoryView} from "../page/book/BookDirectoryView";
+import {BaseTheme} from "../base";
 
 const confing = {
     gesturesEnabled:true,
     headerBackTitleStyle:{color:'#000'},
     headerTintColor:'#000',
+    headerTitleStyle:{
+        color:new BaseTheme().brightNavTextColor
+    },
 };
 
 
@@ -19,7 +23,9 @@ const StackRoute = {
         screen:ClassListView,
         navigationOptions:({navigation})=>({
             headerTitle:navigation.state.params.major,
-            headerStyle:{borderBottomWidth:0},
+            headerStyle:{
+                borderBottomWidth:0,
+                backgroundColor:new BaseTheme().brightNavBackGroundColor},
             ...confing
         })
     },
@@ -27,7 +33,9 @@ const StackRoute = {
         screen:BookDetail,
         navigationOptions:({navigation})=>({
             headerTitle:navigation.state.params.bookTitle,
-            headerStyle:{borderBottomWidth:0},
+            headerStyle:{
+                borderBottomWidth:0,
+                backgroundColor:new BaseTheme().brightBackGroundColor},
             ...confing
         })
     },
