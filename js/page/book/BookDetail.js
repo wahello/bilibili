@@ -12,6 +12,9 @@ import {BookDetailMoreBook} from './BookDetailMoreBook';
 import {RouteHelper} from 'react-navigation-easy-helper';
 import SideMenu from 'react-native-side-menu';
 import {BaseContainer} from "../../base";
+import {BookSideMenu} from './BookSideMenu';
+import {Overlay,Button,Drawer} from 'teaset';
+
 @inject('bookDetailStore','baseTheme',)
 @observer
 export class BookDetail extends React.Component{
@@ -35,6 +38,21 @@ export class BookDetail extends React.Component{
         this.bookDetailStore.fetchBookDetail(id);
     };
 
+    showChapterModal=()=>{
+
+        // let view = (
+        //     <View
+        //         side='right'
+        //         rootTransform="scale"
+        //         modal={false} ref={v => this.overlayPullView = v}>
+        //         <View style={{backgroundColor: '#fff', minWidth: 250, minHeight: 260, justifyContent: 'center', alignItems: 'center'}}>
+        //
+        //         </View>
+        //     </View>
+        // );
+        // let drawer = Drawer.open(view, 'bottom');
+    };
+
     render(){
 
         if (this.bookDetailStore.isLoading){
@@ -43,39 +61,33 @@ export class BookDetail extends React.Component{
 
         return(
 
-            <SideMenu
-                menu={<View style={{flex:1}}/>}
-                menuPosition='right'>
-                <BaseContainer
-                    showGoBack={true}
-                    title={this.bookTitle}>
+            <BaseContainer
+                showGoBack={true}
+                title={this.bookTitle}>
 
-                    <ScrollView
-                        style={{flex:1}}
-                        showsVerticalScrollIndicator={false}>
-                        <BookDetailTopView/>
-                        <BookDetailComments/>
-                        <BookDetailMoreBook/>
+                <ScrollView
+                    style={{flex:1}}
+                    showsVerticalScrollIndicator={false}>
+                    <BookDetailTopView openModal={this.showChapterModal}/>
+                    <BookDetailComments/>
+                    <BookDetailMoreBook/>
 
-                        {this.bookDetailStore.showCopyright?
-                            <View>
-                                <Text style={[style.IntroductionTitle,{color:this.brightNavTextColor}]}>图书信息</Text>
-                                <View style={{flexDirection:'row',marginLeft:30}}>
-                                    <Text style={{color:this.brightNavTextColor}}>版权:</Text>
-                                    <Text style={{color:this.brightNavTextColor}}>{this.bookDetailStore.copyright}</Text>
-                                </View>
+                    {this.bookDetailStore.showCopyright?
+                        <View>
+                            <Text style={[style.IntroductionTitle,{color:this.brightNavTextColor}]}>图书信息</Text>
+                            <View style={{flexDirection:'row',marginLeft:30}}>
+                                <Text style={{color:this.brightNavTextColor}}>版权:</Text>
+                                <Text style={{color:this.brightNavTextColor}}>{this.bookDetailStore.copyright}</Text>
                             </View>
-                            :null}
-                        <View style={{width:WIDTH,height:100}}/>
-                    </ScrollView>
-                    <BookDetailBottomView
-                        startRead={this.startRead}
-                    />
+                        </View>
+                        :null}
+                    <View style={{width:WIDTH,height:100}}/>
+                </ScrollView>
+                <BookDetailBottomView
+                    startRead={this.startRead}
+                />
 
-                </BaseContainer>
-            </SideMenu>
-
-
+            </BaseContainer>
         )
     }
 

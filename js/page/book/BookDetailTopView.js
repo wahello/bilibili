@@ -134,9 +134,9 @@ export class BookDetailTopView extends React.Component<Props,any>{
                     <View style={{marginLeft:30,}}>
                         <Text style={[style.lastChapter,{color:this.brightNavTextColor}]}>{lastChapter}</Text>
                     </View>
-                    {/*<View style={style.longIntroView}>*/}
-                        {/*<Text style={{marginTop:20,fontSize:16,color:this.brightTextColor}} onPress={()=>this.props.navigation.openDrawer()}>{BaseString.LOOK_ALL_CHARTER}</Text>*/}
-                    {/*</View>*/}
+                    <View style={style.longIntroView}>
+                        <Text style={{marginTop:20,fontSize:16,color:this.brightTextColor}} onPress={this.props.openModal}>{BaseString.LOOK_ALL_CHARTER}</Text>
+                    </View>
                     <View style={[style.bookLoadBottomView,{width:WIDTH-60}]}/>
                 </View>
             </View>

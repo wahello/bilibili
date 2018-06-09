@@ -7,6 +7,7 @@ import {BookDetail} from '../page/book/BookDetail';
 import {createDrawerNavigator} from "react-navigation";
 import {BookDirectoryView} from "../page/book/BookDirectoryView";
 import {BaseTheme} from "../base";
+import {BookSideMenu} from "../page/book/BookSideMenu";
 
 const confing = {
     gesturesEnabled:true,
@@ -39,6 +40,9 @@ const StackRoute = {
             ...confing
         })
     },
+    BookSideMenu:{
+        screen:BookSideMenu
+    }
     //Test:BaseStack.StackItem(Test,'标题'),
 };
 
