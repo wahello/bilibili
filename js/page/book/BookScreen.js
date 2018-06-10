@@ -14,7 +14,6 @@ import {GifLoading} from "../../base/BaseLoading";
 @observer
 export class BookScreen extends React.Component{
 
-
     // 构造
     constructor(props) {
         super(props);

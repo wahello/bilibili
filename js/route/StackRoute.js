@@ -8,6 +8,7 @@ import {createDrawerNavigator} from "react-navigation";
 import {BookDirectoryView} from "../page/book/BookDirectoryView";
 import {BaseTheme} from "../base";
 import {BookSideMenu} from "../page/book/BookSideMenu";
+import {BookReaderScreen} from "../page/book/BookReaderScreen";
 
 const confing = {
     gesturesEnabled:true,
@@ -42,6 +43,9 @@ const StackRoute = {
     },
     BookSideMenu:{
         screen:BookSideMenu
+    },
+    BookReaderScreen:{
+        screen:BookReaderScreen
     }
     //Test:BaseStack.StackItem(Test,'标题'),
 };

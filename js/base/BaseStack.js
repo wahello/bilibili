@@ -38,6 +38,7 @@ const TabBarItem =(title:string,selected:string|number,uncheck:string|number)=>{
                 focused? TabBarItemImage(selected) :TabBarItemImage(uncheck)
             )
         },
+
     };
 
 };
