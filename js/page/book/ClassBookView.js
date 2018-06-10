@@ -1,5 +1,6 @@
 /**
  * @flow
+ * 图书分类首页
  */
 import * as React from 'react';
 import {SectionList,View,Text,FlatList,TouchableOpacity,StyleSheet,Animated,} from 'react-native';

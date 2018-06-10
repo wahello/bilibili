@@ -1,5 +1,6 @@
 /**
  * @flow
+ * 最外层的view,控制整体的头部标题和不同loading的显示与隐藏
  */
 import React, {Component} from 'react';
 import {
@@ -7,14 +8,9 @@ import {
     StyleSheet,
     StatusBar,
 } from 'react-native';
-import {SafeAreaView} from 'react-navigation';
 import {observer,inject} from 'mobx-react';
-// import {LoadingView} from "./LoadingView";
-// import {ErrorView} from "./ErrorView";
 import BaseNavBar from './BaseNavBar'
 import {BaseError} from './index';
-import {Loading,GifLoading} from "./BaseLoading";
-
 
 type Props={
     store: any,
@@ -26,27 +22,38 @@ type Props={
 @observer
 export default class BaseContainer extends Component <Props>{
 
-
       constructor(props) {
         super(props);
         this.baseTheme = this.props.baseTheme;
       }
 
+    /**
+     * 重新加载
+      */
     defaultPress = () => {
         const {store} = this.props;
         store.fetchAgain()
     };
 
+    /**
+     *  @store 接受不同store,控制loading和error的显示和隐藏
+     *  @children 需要包裹的组件
+     *  @loading_children  控制不同的loading的显示
+      * @returns {*}
+     */
     renderContent() {
-        const {store, children, onErrorPress} = this.props;
+        const {store, children, onErrorPress,loading_children} = this.props;
         if (!store) return children;
         const {isLoading, isError} = store;
-        if (isLoading) return <GifLoading/>;
+        if (isLoading) return loading_children;
         if (isError) return <BaseError onPress={onErrorPress || this.defaultPress}/>;
         return children;
     }
 
-
+    /**
+     * 头部组件的控制
+     * @returns {*}
+     */
     renderNavView() {
         const {navBar, ...navProps} = this.props;
         let navView = null;

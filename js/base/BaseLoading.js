@@ -1,6 +1,7 @@
 /**
  * @flow
  * loading组件
+ * 一个普通的loaing和模拟的gif loading
  */
 
 import * as React from 'react';

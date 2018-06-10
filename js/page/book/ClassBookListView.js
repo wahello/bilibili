@@ -1,3 +1,7 @@
+/**
+ * @flow
+ * 图书列表
+ */
 import React from 'react';
 import {View,FlatList,ActivityIndicator,Text,StyleSheet,TouchableOpacity} from 'react-native';
 import {observer,inject} from 'mobx-react'
@@ -5,8 +9,7 @@ import {BaseApi} from "../../assest/api";
 import {ImageView} from "../../component/ImageView";
 import {BookListLoading} from "../../component/BookListLoading";
 import {style} from "./Styles";
-import {BaseString} from '../../base';
-
+import {BaseString,BaseContainer} from '../../base';
 
 type Props = {
     onEndReached:()=>void,
@@ -32,8 +35,11 @@ export class ClassBookListView extends React.Component<Props,any>{
 
         return(
 
-            this.bookClassListStore.isLoading?<BookListLoading/>:
-
+            <BaseContainer
+                navBar={null}
+                store={this.bookClassListStore}
+                loading_children={<BookListLoading/>}
+            >
             <FlatList
                 data={this.props.data}
                 keyExtractor={this._keyExtractor}
@@ -43,6 +49,8 @@ export class ClassBookListView extends React.Component<Props,any>{
                 renderItem={this._renderItem}
                 onEndReached={this.props.onEndReached}
                 ListFooterComponent={this._ListFooterComponent}/>
+            </BaseContainer>
+
         )
     }
 

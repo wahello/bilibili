@@ -1,3 +1,7 @@
+/**
+ * @flow
+ * 详情页的loading界面
+ */
 import {inject, observer} from "mobx-react";
 import {View,Image, Text,TouchableOpacity} from 'react-native';
 import {BaseImage} from "../base";
@@ -24,7 +28,7 @@ export  class BookDetailLoading extends React.Component{
     render(){
         return(
             <BaseContainer
-            >
+                navBar={null}>
 
                 <Loading/>
 

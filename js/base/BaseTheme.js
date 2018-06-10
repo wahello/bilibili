@@ -1,3 +1,6 @@
+/**
+ * 控制主题的一个store
+ */
 import {action,observable,computed} from 'mobx';
 import {Platform, StatusBar,DeviceInfo} from 'react-native';
 import {brightColor,darkColor} from "./BaseColor";
@@ -9,9 +12,6 @@ interface Theme{
     changeTheme:()=>mixed
 }
 
-/**
- * 主题类
- */
 export default class BaseTheme implements Theme{
 
     @observable brightBackGroundColor = brightColor.brightBackGroundColor;

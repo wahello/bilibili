@@ -1,5 +1,6 @@
 /**
  * @flow
+ * 错误页面
  */
 import React, {Component} from 'react';
 import {

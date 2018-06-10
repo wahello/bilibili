@@ -1,5 +1,6 @@
 /**
  * @flow
+ * 图书详情页顶部
  */
 import React from 'react';
 import {View,Text} from 'react-native';

@@ -1,3 +1,7 @@
+/**
+ * @flow
+ * 控制整体的回退按钮
+ */
 import React from 'react';
 import {TouchableOpacity } from 'react-native';
 import { withNavigation } from 'react-navigation';

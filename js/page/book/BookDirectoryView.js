@@ -1,3 +1,7 @@
+/**
+ * @flow
+ * 图书章节目录
+ */
 import React from 'react';
 import {View,TouchableOpacity,Text,FlatList} from 'react-native';
 import {SafeAreaView } from 'react-navigation';

@@ -1,5 +1,6 @@
 /**
  * @flow
+ * 图书详情页 更多推荐图书部分
  */
 import React from 'react';
 import {View,Text,TouchableOpacity,Image,FlatList} from 'react-native';

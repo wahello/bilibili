@@ -1,5 +1,6 @@
 /**
  * @flow
+ * 一个公共的头部组件
  */
 import React from 'react';
 import {View,Text,TouchableOpacity,Image,StyleSheet,StatusBar} from 'react-native';

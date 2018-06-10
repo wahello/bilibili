@@ -1,5 +1,6 @@
 /**
  * @flow
+ * 图书详情页
  */
 import React from 'react';
 import {View,Text,ScrollView} from 'react-native';
@@ -13,7 +14,6 @@ import {RouteHelper} from 'react-navigation-easy-helper';
 import SideMenu from 'react-native-side-menu';
 import {BaseContainer} from "../../base";
 import {BookSideMenu} from './BookSideMenu';
-import {Overlay,Button,Drawer} from 'teaset';
 
 @inject('bookDetailStore','baseTheme',)
 @observer
@@ -55,14 +55,13 @@ export class BookDetail extends React.Component{
 
     render(){
 
-        if (this.bookDetailStore.isLoading){
-            return <BookDetailLoading/>
-        }
-
         return(
 
             <BaseContainer
+
+                store={this.bookDetailStore}
                 showGoBack={true}
+                loading_children={ <BookDetailLoading/>}
                 title={this.bookTitle}>
 
                 <ScrollView

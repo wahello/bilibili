@@ -1,3 +1,7 @@
+/**
+ * @flow
+ * 详情页的loading
+ */
 import React from "react";
 import {View} from 'react-native';
 import {BaseString} from "../base";

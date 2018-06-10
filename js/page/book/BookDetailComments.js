@@ -1,5 +1,6 @@
 /**
  * @flow
+ * 图书详情页 评论部分
  */
 import React from 'react';
 import {View,Text,TouchableOpacity,Image} from 'react-native';

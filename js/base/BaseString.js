@@ -1,5 +1,6 @@
 /**
  * @flow
+ * 一些公共的String
  */
     import BaseImage from '../base/BaseImage';
 

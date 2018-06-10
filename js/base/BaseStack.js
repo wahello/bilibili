@@ -1,5 +1,7 @@
 /**
  * @flow
+ * 抽取一些导航的公共配置
+ *
  */
 import * as React from 'react';
 import CardStackStyleInterpolator from "react-navigation/src/views/StackView/StackViewStyleInterpolator";
@@ -27,25 +29,6 @@ const StackTabItemConfig ={
     }),
 };
 
-
-
-// const StackItem = (stack:any,headerTitle:string|number,showBorderBottomWidth:boolean) =>{
-//
-//     return{
-//         screen:stack,
-//         navigationOptions:({navigation})=>({
-//             gesturesEnabled:true,
-//             headerTitle:headerTitle,
-//             headerBackTitleStyle:{
-//                 color:'#000'
-//             },
-//             headerTintColor:'#000',
-//             headerStyle:{
-//                 borderBottomWidth:showBorderBottomWidth?0:null
-//             }
-//         })
-//     }
-// };
 
 const TabBarItem =(title:string,selected:string|number,uncheck:string|number)=>{
     return{

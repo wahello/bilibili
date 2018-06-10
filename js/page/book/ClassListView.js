@@ -1,3 +1,7 @@
+/**
+ * @flow
+ * 图书列表
+ */
 import * as React from 'react';
 import {observer,inject} from 'mobx-react'
 import {ClassListViewTopView} from "./ClassListViewTopView";
