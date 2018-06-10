@@ -1,5 +1,6 @@
 /**
  * @flow
+ * 图书列表store
  */
 
 import {observable,action,runInAction,toJS} from 'mobx';
@@ -7,7 +8,7 @@ import {BaseApi,BookApi} from "../assest/api";
 import {HttpUtils} from "../utils/HttpUtils";
 import {BasePageStore} from "./BasePageStore";
 import {BaseString} from "../base";
-import {Toast} from "teaset";
+import {Toast} from "../utils/Toast";
 
 interface BookClassList {
     data:Array<any>,
@@ -53,7 +54,7 @@ export default class bookClassListStore extends BasePageStore implements BookCla
 
         })).catch((e)=>{
             console.log(e);
-            this.data.length===0?this.setError(true):Toast.fail(BaseString.ERROR_TEXT)
+            this.data.length===0?this.setError(true):this.showToast(true);
         })
     };
 
@@ -74,7 +75,7 @@ export default class bookClassListStore extends BasePageStore implements BookCla
             this.loadingMore  = false;
         })).catch((err)=>{
             console.log(err);
-            this.data.length===0?this.setError(true):Toast.fail(BaseString.ERROR_TEXT)
+            this.data.length===0?this.setError(true):this.showToast(true);
         });
     };
 
@@ -86,12 +87,12 @@ export default class bookClassListStore extends BasePageStore implements BookCla
         }else {
             this.showTopType= true;
         }
-
         let url = BaseApi.BookBase1+BookApi.lv2;
         HttpUtils.get(url).then(action(data=>{
             this.dealArray(data,gender,major);
         })).catch((e)=>{
             console.log(e);
+            this.showToast(true);
         })
     };
 

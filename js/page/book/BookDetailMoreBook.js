@@ -10,6 +10,8 @@ import {ImageView} from "../../component/ImageView";
 import {BaseString} from '../../base';
 import {BaseApi} from "../../assest/api";
 import {RouteHelper} from 'react-navigation-easy-helper';
+import  AutoSizingImage from '../../component/AutoSizingImage';
+import {scaleSize} from "../../utils/ScreenUtils";
 
 type Props={
     recommend_data:Array<any>
@@ -71,7 +73,10 @@ export class BookDetailMoreBook extends React.Component<Props,any>{
                 onPress={()=>RouteHelper.replace('BookDetail',{id:recommend_id,bookTitle:recommend_title})}
                 //onPress={()=>this.bookDetailStore.fetchBookDetail(recommend_id)}
                 style={style.recommend_book}>
-                <ImageView uri={recommend_image} styles={[style.recommend_image,{ backgroundColor:this.brightDefaultColor,}]}/>
+                <AutoSizingImage
+                    uri={recommend_image}
+                    width={scaleSize(180)}
+                    style={[style.recommend_image,{ backgroundColor:this.brightDefaultColor,}]}/>
                 <Text style={{fontSize:12,width:WIDTH/3-40,color:this.brightTextColor}} numberOfLines={1}>{recommend_title}</Text>
             </TouchableOpacity>
         )

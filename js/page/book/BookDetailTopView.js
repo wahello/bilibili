@@ -10,8 +10,8 @@ import {observer,inject} from 'mobx-react';
 import {ImageView} from "../../component/ImageView";
 import StarRating from 'react-native-star-rating';
 import {BaseString} from '../../base';
-import {Card} from 'react-native-ui-lib';
 import {scaleSize} from "../../utils/ScreenUtils";
+import AutoSizingImage from '../../component/AutoSizingImage';
 
 type Props = {
     cover:string,
@@ -57,7 +57,10 @@ export class BookDetailTopView extends React.Component<Props,any>{
 
             <View>
                 <View style={style.bookDetailViewTop}>
-                    <ImageView uri={cover} styles={[style.bookDetailViewTopLeftImg1,{ backgroundColor:this.brightDefaultColor}]}/>
+                    <View style={[style.bookDetailViewTopLeftImg,{ backgroundColor:this.brightDefaultColor}]}>
+                        <AutoSizingImage uri={cover}
+                                         width={scaleSize(210)}/>
+                    </View>
                     <View style={style.bookDetailViewTopTextView}>
                         <Text style={[style.bookDetailViewTopTitleRight,{color: this.brightNavTextColor}]} numberOfLines={1}>{title}</Text>
                         <View style={{flexDirection:'row',height:40,alignItems:'center'}}>

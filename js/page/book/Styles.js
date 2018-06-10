@@ -103,14 +103,16 @@ export const style = StyleSheet.create({
         height:scaleSize(200),
         borderRadius:5,
         marginLeft:20,
-        shadowOffset: {width: 0, height: 0},
+        shadowOffset: {width: 1, height: 1},
         shadowOpacity: 1,
         shadowRadius: 5,
+        shadowColor: 'rgba(0,0,0,0.5)',
         elevation: 10,
     },
     leftBookView1:{
-        width:scaleSize(160),
-        height:scaleSize(220),
+        width:scaleSize(140),
+        height:scaleSize(200),
+        borderRadius:5,
     },
     rightBookView:{
         marginLeft:20,
@@ -165,25 +167,15 @@ export const style = StyleSheet.create({
     },
     bookDetailViewTopLeftImg:{
         width:scaleSize(210),
-        height:scaleSize(300),
         borderRadius:5,
         marginLeft:scaleSize(44),
-        shadowOffset: {width: 0, height: 0},
+        shadowOffset: {width: 1, height: 1},
         shadowOpacity: 1,
         shadowRadius: 5,
+        shadowColor: 'rgba(0,0,0,0.5)',
         elevation: 10,
     },
-    bookDetailViewTopLeftImg1:{
-        width:scaleSize(210),
-        height:scaleSize(300),
-        borderRadius:5,
-        marginLeft:scaleSize(44),
-        elevation: 10,
-        shadowOffset: {width: 10, height: 10},
-        shadowColor: 'black',
-        shadowOpacity: 1,
-        shadowRadius: 5
-    },
+
 
     bookDetailViewTopTextView:{
         width:WIDTH/2,
@@ -236,6 +228,7 @@ export const style = StyleSheet.create({
         width:WIDTH,
         flexDirection:'row',
         height:isIPhoneX?60:60,
+        zIndex:999
     },
     ChaseView:{
         width:WIDTH/2,
@@ -395,9 +388,9 @@ export const style = StyleSheet.create({
         alignItems:'center',
     },
     recommend_image:{
-        width:scaleSize(180),
-        height:scaleSize(240),
-        borderRadius:5,
+
+       // height:scaleSize(240),
+        //borderRadius:5,
         marginBottom:8,
         marginTop:20
     },
@@ -416,5 +409,21 @@ export const style = StyleSheet.create({
     },
     chapter_item_title:{
         fontSize:12,
+    },
+    chapterTitle:{
+        fontSize:25,
+        marginTop:20,
+        marginBottom:20,
+        marginLeft:20,
+        marginRight:20,
+        width:WIDTH-40,
+    },
+
+    chapterBottomView:{
+        width:WIDTH,
+        height:60,
+        justifyContent:'center',
+        alignItems:'center',
+        flexDirection:'row',
     },
 });

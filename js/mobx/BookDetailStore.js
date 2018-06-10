@@ -1,12 +1,13 @@
 /**
  * @flow
+ * 图书详情
  */
 import {observable,action,runInAction,toJS} from 'mobx';
 import {BaseApi,BookApi} from "../assest/api";
 import {HttpUtils} from "../utils/HttpUtils";
 import {BasePageStore} from "./BasePageStore";
 import {BaseString} from "../base";
-import {Toast} from "teaset";
+import {Toast} from "../utils/Toast";
 import {getTime,getSize} from "../fun";
 
 
@@ -73,6 +74,7 @@ export default class BookDetailStore extends BasePageStore implements BookDetail
 
     constructor(){
         super();
+
     }
 
     @action fetchBookDetail=async(id)=>{
@@ -112,7 +114,7 @@ export default class BookDetailStore extends BasePageStore implements BookDetail
             })
         }catch (e) {
             console.log(e);
-            Toast.fail(BaseString.ERROR_TEXT)
+            this.showToast(true)
         }
 
     };
@@ -126,6 +128,7 @@ export default class BookDetailStore extends BasePageStore implements BookDetail
             console.log(data.chapters)
         })).catch((e)=>{
             console.log(e);
+            this.showToast(true)
         })
     };
 
@@ -184,6 +187,15 @@ export default class BookDetailStore extends BasePageStore implements BookDetail
             }
 
         }
-
+    }
+    /**
+     * 加入书架
+     */
+    @action addBookcase=()=>{
+       // alert('123')
+        this.showToast(true,'加入书架成功');
+        setTimeout(()=>{
+            this.hideToast()
+        },3000)
     }
 }

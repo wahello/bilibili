@@ -4,6 +4,7 @@
 import {action,observable,computed} from 'mobx';
 import {Platform, StatusBar,DeviceInfo} from 'react-native';
 import {brightColor,darkColor} from "./BaseColor";
+import {BaseImage} from './index';
 
 interface Theme{
     isDark:boolean;
@@ -28,14 +29,19 @@ export default class BaseTheme implements Theme{
     @observable brightStatusBarStyle = brightColor.brightStatusBarStyle;
     @observable brightRecommended = brightColor.brightRecommended;
     @observable brightDefaultColor = brightColor.brightDefaultColor;
+    @observable brightReadTextColor = brightColor.brightReadTextColor;
 
     @observable isDark =false;
     @observable isIPhoneX = DeviceInfo.isIPhoneX_deprecated;
+    @observable changeImage=null;
 
     @computed get statusBarHeight(){
         return this.isIPhoneX? 44 : Platform.OS ==='android'?Platform.Version<21?0:StatusBar.currentHeight:20
     }
 
+    /**
+     * 改变主题
+     */
     @action changeTheme=()=>{
 
         this.brightBackGroundColor = darkColor.brightBackGroundColor;
@@ -52,6 +58,16 @@ export default class BaseTheme implements Theme{
         this.brightStatusBarStyle = darkColor.brightStatusBarStyle;
         this.brightRecommended = darkColor.brightRecommended;
         this.brightDefaultColor = darkColor.brightDefaultColor;
+        this.brightReadTextColor = darkColor.brightReadTextColor;
         this.isDark = true
+
+    }
+    /**
+     * 改变背景图片
+     */
+    @action changeBgImage=()=>{
+        console.log(this.changeImage)
+        this.changeImage = BaseImage.reader_background_brown_big_img6
+        console.log(this.changeImage)
     }
 }

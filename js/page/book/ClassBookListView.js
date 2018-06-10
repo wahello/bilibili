@@ -10,6 +10,8 @@ import {ImageView} from "../../component/ImageView";
 import {BookListLoading} from "../../component/BookListLoading";
 import {style} from "./Styles";
 import {BaseString,BaseContainer} from '../../base';
+import AutoSizingImage from "../../component/AutoSizingImage";
+import {scaleSize} from "../../utils/ScreenUtils";
 
 type Props = {
     onEndReached:()=>void,
@@ -73,10 +75,16 @@ export class ClassBookListView extends React.Component<Props,any>{
             <TouchableOpacity
                 onPress={()=>this.props.jump(_id,bookTitle)}
                 activeOpacity={1}>
-                <View style={[style.bookLoadView,{ backgroundColor:this.brightBackGroundColor}]}>
-                <ImageView uri={cover} styles={[
-                    style.leftBookView,
-                    { backgroundColor:this.brightDefaultColor, shadowColor: this.brightDefaultColor}]}/>
+                <View style={[style.bookLoadView]}>
+                    <View style={ style.leftBookView} >
+                        <AutoSizingImage
+                            uri={cover}
+                            width={scaleSize(140)}
+                        />
+                        {/*<ImageView uri={cover} styles={[*/}
+                            {/*style.leftBookView1,*/}
+                            {/*{ backgroundColor:this.brightDefaultColor, shadowColor: this.brightDefaultColor}]}/>*/}
+                    </View>
                 <View style={style.rightBookView}>
                     <Text style={[style.BookViewTitle,{ color: this.brightNavTextColor,}]} numberOfLines={1}>{bookTitle}</Text>
                     <Text numberOfLines={2} style={[style.BookViewContext,{ color: this.brightTextColor}]}>{shortIntro}</Text>

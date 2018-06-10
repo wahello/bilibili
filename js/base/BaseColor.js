@@ -19,7 +19,7 @@ interface ThemeColor {
     brightStatusBarStyle:string;
     brightRecommended :string;
     brightDefaultColor:string;
-
+    brightReadTextColor:string;
 }
 
 /**
@@ -41,6 +41,7 @@ class BrightColor implements ThemeColor{
     brightStatusBarStyle='dark-content';
     brightRecommended ='#F0F0F5';
     brightDefaultColor='#EAEAEA';
+    brightReadTextColor='#604733';
 
 }
 
@@ -63,6 +64,7 @@ class DarkColor implements ThemeColor{
     brightStatusBarStyle='light-content';
     brightRecommended='#303030';
     brightDefaultColor='#303030';
+    brightReadTextColor='#FBFBFB'
 
 }
 

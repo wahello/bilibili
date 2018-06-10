@@ -15,7 +15,7 @@ import SideMenu from 'react-native-side-menu';
 import {BaseContainer} from "../../base";
 import {BookSideMenu} from './BookSideMenu';
 
-@inject('bookDetailStore','baseTheme',)
+@inject('bookDetailStore','baseTheme')
 @observer
 export class BookDetail extends React.Component{
 
@@ -55,6 +55,8 @@ export class BookDetail extends React.Component{
 
     render(){
 
+        console.log(this.bookDetailStore.isToast)
+
         return(
 
             <BaseContainer
@@ -83,6 +85,7 @@ export class BookDetail extends React.Component{
                     <View style={{width:WIDTH,height:100}}/>
                 </ScrollView>
                 <BookDetailBottomView
+                    addBookcase={this.addBookcase}
                     startRead={this.startRead}
                 />
 
@@ -91,10 +94,12 @@ export class BookDetail extends React.Component{
     }
 
     startRead=()=>{
-        setTimeout(()=>{
-            RouteHelper.navigate('BookReaderScreen',{link:0})
-        },200)
+        RouteHelper.navigate('BookReaderScreen',{link:0})
     };
+
+    addBookcase=()=>{
+        this.bookDetailStore.addBookcase()
+    }
 
 }
 

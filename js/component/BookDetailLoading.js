@@ -9,6 +9,7 @@ import React from "react";
 import {style} from "../page/book/Styles";
 import {BaseString,BaseContainer} from '../base';
 import {GifLoading, Loading} from "../base/BaseLoading";
+import {scaleSize} from "../utils/ScreenUtils";
 
 @inject('baseTheme')
 @observer
@@ -33,7 +34,7 @@ export  class BookDetailLoading extends React.Component{
                 <Loading/>
 
                 <View style={style.bookDetailViewTop}>
-                    <View style={[style.bookDetailViewTopLeftImg,{ backgroundColor:this.brightDefaultColor, shadowColor: this.brightDefaultColor}]}/>
+                    <View style={[style.bookDetailViewTopLeftImg,{ backgroundColor:this.brightDefaultColor,  height:scaleSize(300),shadowColor: this.brightDefaultColor}]}/>
                     <View style={style.bookDetailViewTopTextView}>
                         <View style={[style.bookDetailViewTopRight,{ backgroundColor:this.brightDefaultColor}]}/>
                         <View style={{flexDirection:'row',height:40,alignItems:'center'}}>
@@ -96,6 +97,7 @@ export class BookDetailBottomView extends React.Component{
                 <View style={style.ChaseView}>
                     <TouchableOpacity
                         activeOpacity={0.9}
+                        onPress={this.props.addBookcase}
                         style={style.dotChaseView}>
                         <Text style={[style.dotChaseTitle,{color:'#fff'}]}>+ 追更新</Text>
                     </TouchableOpacity>

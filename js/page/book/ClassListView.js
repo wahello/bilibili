@@ -40,10 +40,11 @@ export  class ClassListView extends React.Component{
 
     render(){
 
+
         return(
             <BaseContainer
                 showGoBack={true}
-                title={this.majo}>
+                title={this.major}>
 
                 {this.bookClassListStore.showTopType?
                     <ClassListViewTopView

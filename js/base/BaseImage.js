@@ -33,6 +33,7 @@ class BaseImage {
     back:string=require('../assest/icon/back.png');
     back_dark:string = require('../assest/icon/back_dark.png');
     back_bright:string = require('../assest/icon/back_bright.png');
+    icon_toast:string = require('../assest/icon/icon_toast.png');
 
     loading_gif_one:string=require('../assest/icon/loading_1.png');
     loading_gif_two:string=require('../assest/icon/loading_2.png');

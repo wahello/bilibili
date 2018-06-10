@@ -51,7 +51,7 @@ export class ClassBookView extends React.Component<Props,State>{
         })
 
         return(
-            <View style={[style.container,{flexDirection:'row',backgroundColor:this.baseTheme.brightBackGroundColor}]}>
+            <View style={[style.container,{flexDirection:'row',backgroundColor:'transparent'}]}>
                 <FlatList
                     ref='scrollView'
                     data={BaseString.BOOK_CLASS_ARRAY}
@@ -151,7 +151,6 @@ export class ClassBookView extends React.Component<Props,State>{
     };
 
     _renderItem=({item})=>{
-
         return(
             <FlatList
                 data={item}

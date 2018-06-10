@@ -46,7 +46,7 @@ export class BookDetailComments extends React.Component<Props,any>{
                     let context = ClearBr(item.content);
 
                     return(
-                        <View key={i} style={[style.evaluationItemView,{ backgroundColor:this.brightBackGroundColor,}]}>
+                        <View key={i} style={[style.evaluationItemView]}>
                             <View style={style.evaluationItemTopView}>
                                 <View style={{flexDirection:'row',alignItems:'center',marginLeft:20}}>
                                     <ImageView uri={BaseApi.BookBase4+item.author.avatar} styles={[style.evaluationItemImageView,{ borderColor:this.brightTextColor,}]}/>

@@ -41,7 +41,6 @@ export const Like = observer(
                     headerTitle:BaseString.TAB_BAR_HEADER_LIKE,
                     headerStyle:{
                         borderBottomWidth:0,
-                        backgroundColor:new BaseTheme().brightNavBackGroundColor
                     }
                 })},
 
@@ -55,7 +54,7 @@ export const Mine = createStackNavigator(
             MineScreen:{screen:MineScreen,navigationOptions:({navigation})=>({
                     headerTitle:BaseString.TAB_BAR_HEADER_MINE,
                     headerStyle:{
-                        backgroundColor:new BaseTheme().brightNavBackGroundColor
+
                     }
                 })},
 
@@ -72,7 +71,7 @@ const Tab = createBottomTabNavigator({
         initialRouteName:'Book',
             tabBarVisible:true,
             tabBarOptions:{
-                tabStyle:{backgroundColor:new BaseTheme().brightNavBackGroundColor}
+
             },
         // tabBarComponent:CustomTabComponent
     }

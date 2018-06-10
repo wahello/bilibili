@@ -15,7 +15,7 @@ const confing = {
     headerBackTitleStyle:{color:'#000'},
     headerTintColor:'#000',
     headerTitleStyle:{
-        color:new BaseTheme().brightNavTextColor
+
     },
 };
 
@@ -27,7 +27,7 @@ const StackRoute = {
             headerTitle:navigation.state.params.major,
             headerStyle:{
                 borderBottomWidth:0,
-                backgroundColor:new BaseTheme().brightNavBackGroundColor},
+                },
             ...confing
         })
     },
@@ -37,7 +37,7 @@ const StackRoute = {
             headerTitle:navigation.state.params.bookTitle,
             headerStyle:{
                 borderBottomWidth:0,
-                backgroundColor:new BaseTheme().brightBackGroundColor},
+               },
             ...confing
         })
     },
