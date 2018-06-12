@@ -2,13 +2,11 @@
  * @flow
  */
 
-import {ClassListView} from '../page/book/ClassListView'
-import {BookDetail} from '../page/book/BookDetail';
-import {createDrawerNavigator} from "react-navigation";
-import {BookDirectoryView} from "../page/book/BookDirectoryView";
-import {BaseTheme} from "../base";
+import {ClassListView} from '../page/book/list/ClassListView'
+import {BookDetail} from '../page/book/detail/BookDetail';
 import {BookSideMenu} from "../page/book/BookSideMenu";
-import {BookReaderScreen} from "../page/book/BookReaderScreen";
+import {BookReaderScreen} from "../page/book/read/BookReaderScreen";
+import {BookComments} from "../page/book/comment/BookComments";
 
 const confing = {
     gesturesEnabled:true,
@@ -46,6 +44,9 @@ const StackRoute = {
     },
     BookReaderScreen:{
         screen:BookReaderScreen
+    },
+    BookComments:{
+        screen:BookComments
     }
     //Test:BaseStack.StackItem(Test,'标题'),
 };

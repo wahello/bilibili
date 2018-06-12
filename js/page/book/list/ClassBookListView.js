@@ -5,13 +5,13 @@
 import React from 'react';
 import {View,FlatList,ActivityIndicator,Text,StyleSheet,TouchableOpacity} from 'react-native';
 import {observer,inject} from 'mobx-react'
-import {BaseApi} from "../../assest/api";
-import {ImageView} from "../../component/ImageView";
-import {BookListLoading} from "../../component/BookListLoading";
-import {style} from "./Styles";
-import {BaseString,BaseContainer} from '../../base';
-import AutoSizingImage from "../../component/AutoSizingImage";
-import {scaleSize} from "../../utils/ScreenUtils";
+import {BaseApi} from "../../../assest/api";
+import {ImageView} from "../../../component/ImageView";
+import {BookListLoading} from "../../../component/Loading/BookListLoading";
+import {style} from "../Styles";
+import {BaseString,BaseContainer} from '../../../base/index';
+import AutoSizingImage from "../../../component/AutoSizingImage";
+import {scaleSize} from "../../../utils/ScreenUtils";
 
 type Props = {
     onEndReached:()=>void,

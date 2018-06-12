@@ -6,7 +6,7 @@ import React from 'react';
 import {View,TouchableOpacity,Text,FlatList} from 'react-native';
 import {SafeAreaView } from 'react-navigation';
 import {inject,observer} from "mobx-react";
-import {style} from "./Styles";
+import {style} from "../Styles";
 import {DrawerActions} from "react-navigation";
 
 @inject('bookDetailStore','baseTheme')

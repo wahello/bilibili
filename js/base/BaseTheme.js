@@ -30,6 +30,7 @@ export default class BaseTheme implements Theme{
     @observable brightRecommended = brightColor.brightRecommended;
     @observable brightDefaultColor = brightColor.brightDefaultColor;
     @observable brightReadTextColor = brightColor.brightReadTextColor;
+    @observable brightSettingItemColor = brightColor.brightSettingItemColor;
 
     @observable isDark =false;
     @observable isIPhoneX = DeviceInfo.isIPhoneX_deprecated;
@@ -59,6 +60,7 @@ export default class BaseTheme implements Theme{
         this.brightRecommended = darkColor.brightRecommended;
         this.brightDefaultColor = darkColor.brightDefaultColor;
         this.brightReadTextColor = darkColor.brightReadTextColor;
+        this.brightSettingItemColor = darkColor.brightSettingItemColor;
         this.isDark = true
 
     }

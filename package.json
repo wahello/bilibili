@@ -20,6 +20,7 @@
     "react-native-snap-carousel": "^3.7.0",
     "react-native-splash-screen": "^3.0.7",
     "react-native-star-rating": "^1.0.9",
+    "react-native-tab-view": "^1.0.2",
     "react-navigation": "^2.0.4",
     "react-navigation-easy-helper": "^1.2.0",
     "realm": "^2.7.0"

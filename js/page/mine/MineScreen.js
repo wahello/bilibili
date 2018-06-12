@@ -3,6 +3,7 @@ import {View,Text} from 'react-native';
 import {BaseContainer,BaseString} from '../../base';
 import {observer,inject} from 'mobx-react';
 import {RouteHelper} from 'react-navigation-easy-helper';
+import {SettingItem} from '../setting/SettingItem';
 @inject('baseTheme')
 @observer
 export class MineScreen extends React.Component{
@@ -16,8 +17,10 @@ export class MineScreen extends React.Component{
 
     render(){
         return(
-          <BaseContainer>
-              <Text onPress={this.onPress}>改变背景</Text>
+          <BaseContainer
+            title='设置'
+          >
+             <SettingItem/>
           </BaseContainer>
         )
     }

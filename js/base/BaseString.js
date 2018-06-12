@@ -37,8 +37,13 @@
     const SENTIMENT:string = '人气';
     const READED_RETAINED :string='读者留存';
     const WAN:string='万';
+    const DISCUSSION_SENTIMENT:string = '讨论区人气:';
+    const TODA_ADD_DISCUSS:string = '今日新增讨论:';
+
+    const COLLECTION:string = '收藏';
 
     const BOOK_CLASS_ARRAY = ['男生','女生','漫画','出版'];
+    const BOOK_COMMENT_TAB = [{title:'讨论'},{title:'书评'},{title:'短评'}];
     const BOOK_TOP_CLASS_TYPE = [
         {title:'热门',label:'hot'},
         {title:'新书',label:'new'},
@@ -77,5 +82,5 @@ export {
     BOOK_MINE_HISTORY,BOOK_MINE_LIKE,BOOK_TOP_CLASS_TYPE,BOOK_DETAIL_CLASS,RECOMMEND,
     PEOPEL_COMMEND,INTRODUCTION,NEW_CHAPTER,HOE_SHORT_COMMEND,ALL_SHORT_COMMEND,MAY_LIKE,
     LOOK_MORE,SENTIMENT,READED_RETAINED,WAN,LOADING_OVER,LOOK_ALL_CHARTER,BOOK_DETAIL_CLASS_TWO,
-    BOOK_LOADING_GIF
+    BOOK_LOADING_GIF,BOOK_COMMENT_TAB,COLLECTION,DISCUSSION_SENTIMENT,TODA_ADD_DISCUSS
 }

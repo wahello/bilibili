@@ -38,49 +38,60 @@ export default class bookClassListStore extends BasePageStore implements BookCla
         super();
     }
 
-    @action fetchData=(gender:string,type:string,major,minor:string)=> {
+    @action 
+    async fetchData(gender:string,type:string,major,minor:string){
 
         this.setLoading(true);
         let url = BaseApi.BookBase1 + BookApi.categories;
         let params = {
             gender: gender, type: type, major: major, minor: minor, start: this.start, limit: 20
         };
-        HttpUtils.get(url, params).then(action(data=>{
-            this.data = data.books;
-            this.total = data.total;
-            setTimeout(()=>{
-                this.setLoading(false)
-            },1500);
-
-        })).catch((e)=>{
-            console.log(e);
-            this.data.length===0?this.setError(true):this.showToast(true);
-        })
+        try {
+            const dataSource = await HttpUtils.get(url, params);
+            runInAction(()=>{
+                this.data = dataSource.books;
+                this.total = dataSource.total;
+                setTimeout(()=>{
+                    this.setLoading(false)
+                },1500);
+            })
+        }catch (e) {
+            console.log(e)
+            runInAction(()=>{
+                this.setLoading(false);
+                this.data.length===0?this.setError(true):this.showToast(true);
+            })
+        }
     };
 
     @action fetchAgain=()=>{
         this.fetchData()
     };
 
-
-    @action fetchMoreData = (gender:string,type:string,major,minor:string,start:number)=>{
+    @action
+    async fetchMoreData(gender:string,type:string,major,minor:string,start:number){
 
         this.loadingMore = true;
         let url = BaseApi.BookBase1+BookApi.categories;
         let params = {
             gender:gender,type:type,major:major,minor:minor,start:start,limit:20
         };
-        HttpUtils.get(url, params).then(action(data=>{
-            this.data = this.data.concat(data.books);
-            this.loadingMore  = false;
-        })).catch((err)=>{
-            console.log(err);
-            this.data.length===0?this.setError(true):this.showToast(true);
-        });
+        try{
+            const dataSource =  HttpUtils.get(url, params);
+            runInAction(()=>{
+                this.data = this.data.concat(dataSource.books);
+                this.loadingMore  = false;
+            })
+        }catch (e) {
+            console.log(e);
+            runInAction(()=>{
+                this.data.length===0?this.setError(true):this.showToast(true);
+            })
+        }
     };
 
-    @action fetchClassSmall=(gender,major)=>{
-
+    @action
+    async fetchClassSmall(gender,major){
 
         if (gender ==='picture' || gender==='press'){
             this.showTopType = false;
@@ -88,12 +99,14 @@ export default class bookClassListStore extends BasePageStore implements BookCla
             this.showTopType= true;
         }
         let url = BaseApi.BookBase1+BookApi.lv2;
-        HttpUtils.get(url).then(action(data=>{
-            this.dealArray(data,gender,major);
-        })).catch((e)=>{
+        try {
+            const dataSource = await HttpUtils.get(url);
+            runInAction(()=>{
+                this.dealArray(dataSource,gender,major);
+            })
+        }catch (e) {
             console.log(e);
-            this.showToast(true);
-        })
+        }
     };
 
     @action changeTopIndex=(index)=>{

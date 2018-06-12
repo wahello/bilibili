@@ -5,15 +5,15 @@
 import React from 'react';
 import {View,Text,ScrollView} from 'react-native';
 import {observer,inject} from 'mobx-react';
-import {BookDetailLoading,BookDetailBottomView} from "../../component/BookDetailLoading";
+import {BookDetailLoading,BookDetailBottomView} from "../../../component/Loading/BookDetailLoading";
 import {BookDetailTopView} from './BookDetailTopView';
-import {style} from "./Styles";
+import {style} from "../Styles";
 import {BookDetailComments} from './BookDetailComments';
 import {BookDetailMoreBook} from './BookDetailMoreBook';
 import {RouteHelper} from 'react-navigation-easy-helper';
 import SideMenu from 'react-native-side-menu';
-import {BaseContainer} from "../../base";
-import {BookSideMenu} from './BookSideMenu';
+import {BaseContainer} from "../../../base/index";
+import {BookSideMenu} from '../BookSideMenu';
 
 @inject('bookDetailStore','baseTheme')
 @observer
@@ -40,27 +40,13 @@ export class BookDetail extends React.Component{
 
     showChapterModal=()=>{
 
-        // let view = (
-        //     <View
-        //         side='right'
-        //         rootTransform="scale"
-        //         modal={false} ref={v => this.overlayPullView = v}>
-        //         <View style={{backgroundColor: '#fff', minWidth: 250, minHeight: 260, justifyContent: 'center', alignItems: 'center'}}>
-        //
-        //         </View>
-        //     </View>
-        // );
-        // let drawer = Drawer.open(view, 'bottom');
     };
 
     render(){
 
-        console.log(this.bookDetailStore.isToast)
-
         return(
 
             <BaseContainer
-
                 store={this.bookDetailStore}
                 showGoBack={true}
                 loading_children={ <BookDetailLoading/>}
@@ -70,7 +56,7 @@ export class BookDetail extends React.Component{
                     style={{flex:1}}
                     showsVerticalScrollIndicator={false}>
                     <BookDetailTopView openModal={this.showChapterModal}/>
-                    <BookDetailComments/>
+                    <BookDetailComments id={this.id}/>
                     <BookDetailMoreBook/>
 
                     {this.bookDetailStore.showCopyright?

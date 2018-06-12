@@ -4,14 +4,14 @@
  */
 import React from 'react';
 import {View,Text,TouchableOpacity,Image,FlatList} from 'react-native';
-import {style} from "./Styles";
+import {style} from "../Styles";
 import {observer,inject} from 'mobx-react';
-import {ImageView} from "../../component/ImageView";
-import {BaseString} from '../../base';
-import {BaseApi} from "../../assest/api";
+import {ImageView} from "../../../component/ImageView";
+import {BaseString} from '../../../base/index';
+import {BaseApi} from "../../../assest/api";
 import {RouteHelper} from 'react-navigation-easy-helper';
-import  AutoSizingImage from '../../component/AutoSizingImage';
-import {scaleSize} from "../../utils/ScreenUtils";
+import  AutoSizingImage from '../../../component/AutoSizingImage';
+import {scaleSize} from "../../../utils/ScreenUtils";
 
 type Props={
     recommend_data:Array<any>

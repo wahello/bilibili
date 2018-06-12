@@ -20,6 +20,7 @@ interface ThemeColor {
     brightRecommended :string;
     brightDefaultColor:string;
     brightReadTextColor:string;
+    brightSettingItemColor:string;
 }
 
 /**
@@ -29,7 +30,7 @@ class BrightColor implements ThemeColor{
 
     brightBackGroundColor='#FBFBFB';
     brightBackGroundImage='';
-    brightNavBackGroundColor='#F7F7F7';
+    brightNavBackGroundColor='#FBFBFB';
     brightTextColor='#666666';
     brightNavTextColor='#000';
     brightItemSeparatorComponent='#A7A7AA';
@@ -42,6 +43,8 @@ class BrightColor implements ThemeColor{
     brightRecommended ='#F0F0F5';
     brightDefaultColor='#EAEAEA';
     brightReadTextColor='#604733';
+    brightSettingItemColor='#F7F7F7';
+
 
 }
 
@@ -56,15 +59,16 @@ class DarkColor implements ThemeColor{
     brightTextColor='#FFFFFF';
     brightNavTextColor='#FBFBFB';
     brightItemSeparatorComponent='#FBFBFB';
-    brightTabBarBackGroundColor='#202020';
+    brightTabBarBackGroundColor='#303030';
     brightSuccessColor='#5BB75B';
     brightPrimaryColor='#FF0000';
-    brightTopTabBottomColor='#F7F7F7';
+    brightTopTabBottomColor='#FBFBFB';
     brightBackImage=require('../assest/icon/back_bright.png');
     brightStatusBarStyle='light-content';
     brightRecommended='#303030';
     brightDefaultColor='#303030';
-    brightReadTextColor='#FBFBFB'
+    brightReadTextColor='#FBFBFB';
+    brightSettingItemColor='#303030'
 
 }
 

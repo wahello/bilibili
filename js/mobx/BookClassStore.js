@@ -2,7 +2,7 @@
  * @flow
  * 图书分类
  */
-import {observable,action} from 'mobx';
+import {observable,action,runInAction} from 'mobx';
 import {BaseApi,BookApi} from "../assest/api";
 import {HttpUtils} from "../utils/HttpUtils";
 import {Toast} from "../utils/Toast";
@@ -16,25 +16,32 @@ interface BookClass {
 
 export default class BookClassStore extends BasePageStore implements BookClass{
 
-
     @observable data = [];
-
-     @action fetchData=()=>{
-        this.setLoading(true);
-        HttpUtils.get(BaseApi.BookBase1+BookApi.statistics,null)
-            .then(action((res)=>{
-                this.data=dealArray(res).slice(0);
-                setTimeout(()=>{
-                    this.setLoading(false);
-                },2000)
-            })).catch((error)=>{
-                this.data.length ===0?this.setError(true,error.msg):this.showToast(true)
-        })
-    }
 
     @action fetchAgain=()=>{
          this.fetchData()
+    };
+
+    @action
+    async fetchData() {
+        this.data = [];
+        this.setLoading(true);
+        try {
+            const dataSource = await HttpUtils.get(BaseApi.BookBase1+BookApi.statistics,null);
+            runInAction(()=>{
+                this.data=dealArray(dataSource).slice(0);
+                setTimeout(()=>{
+                    this.setLoading(false);
+                },1000)
+            })
+        }catch (e) {
+            runInAction(()=>{
+                console.log(e);
+                this.data.length ===0?this.setError(true,error.msg):this.showToast(true)
+            })
+        }
     }
+
 }
 
 

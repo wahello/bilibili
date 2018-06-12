@@ -2,7 +2,7 @@
  * @flow
  * 图书详情
  */
-import {observable,action,runInAction,toJS} from 'mobx';
+import {observable,action,runInAction,toJS,computed} from 'mobx';
 import {BaseApi,BookApi} from "../assest/api";
 import {HttpUtils} from "../utils/HttpUtils";
 import {BasePageStore} from "./BasePageStore";
@@ -38,7 +38,7 @@ interface BookDetail {
     originalPriceText:string,
     commentTitle:string,
     showRecommendedView:boolean,
-    showCopyright:boolean
+    showCopyright:boolean,
 
 }
 
@@ -77,7 +77,8 @@ export default class BookDetailStore extends BasePageStore implements BookDetail
 
     }
 
-    @action fetchBookDetail=async(id)=>{
+    @action
+    async fetchBookDetail(id){
 
         this.setLoading(true);
         let url = BaseApi.BookBase1+BookApi.booId+id;
@@ -86,7 +87,6 @@ export default class BookDetailStore extends BasePageStore implements BookDetail
         let recommend_url = BaseApi.BookBase1+'/book/'+id+BookApi.recommend;
         let pricr_url = BaseApi.BookBase1+'/book/'+id+BookApi.price;
         let original_url = BaseApi.BookBase1+BookApi.btoc;
-
         const params = {limit:3, total:true, sortType:'hottest'};
         const params1={view:'summary', book:id};
         const recommend_params = {packageName:'com.ushaqi.zhuishushenqi'};
@@ -100,36 +100,37 @@ export default class BookDetailStore extends BasePageStore implements BookDetail
             const original_data = await HttpUtils.get(original_url,params1);
             runInAction(()=>{
                 this.setDetail(data,comment.docs);
-                this.bookDetail = data;
                 this.evaluation_data = evaluation_data.docs;
                 this.evaluation_total = evaluation_data.total;
                 this.recommend_data = recommend_data.books;
                 this.originalPriceText = pricr_data.doc.originalPriceText;
                 this.bookTitle = data.title;
-                this.chapterFetchData(original_data[0]._id,data);
+                this.chapterFetchData(original_data[0]._id);
                 setTimeout(()=>{
                     this.setLoading(false)
                 },1500);
-
             })
+        }catch (e) {
+            console.log(e);
+            this.setLoading(true);
+            this.showToast(true)
+        }
+    };
+
+    @action
+    async chapterFetchData(id){
+
+        let url = BaseApi.BookBase1+BookApi.atoc+id;
+        const params = {view:'chapters'};
+        try{
+            const dataSource = await  HttpUtils.get(url,params);
+            runInAction(()=>{
+                this.chapter_data = dataSource.chapters;
+            });
         }catch (e) {
             console.log(e);
             this.showToast(true)
         }
-
-    };
-
-    @action chapterFetchData=(id, dataSource)=>{
-
-        let url = BaseApi.BookBase1+BookApi.atoc+id;
-        const params = {view:'chapters'};
-        HttpUtils.get(url,params).then(action(data=>{
-            this.chapter_data = data.chapters;
-            console.log(data.chapters)
-        })).catch((e)=>{
-            console.log(e);
-            this.showToast(true)
-        })
     };
 
     @action setDetail=(bookDetail,comment_data)=>{
@@ -140,7 +141,6 @@ export default class BookDetailStore extends BasePageStore implements BookDetail
         if (data){
 
             this.cover = BaseApi.BookBase4 + data.cover;
-
             this.title = data.title;
             this.author = data.author;
             this.majorCate = data.majorCate;
@@ -175,7 +175,6 @@ export default class BookDetailStore extends BasePageStore implements BookDetail
             }
             this.longIntro = data.longIntro;
             if (comment[0]){
-                //console.log(666,comment[0].comment);
                 if (comment[0].comment.length>0){
                     this.commentTitle = comment[0].comment;
                     this.showRecommendedView= true;

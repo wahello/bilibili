@@ -8,7 +8,8 @@ import {
     StyleSheet,
     StatusBar,
     ImageBackground,
-    DeviceEventEmitter
+    DeviceEventEmitter,
+    
 } from 'react-native';
 import {observer,inject} from 'mobx-react';
 import BaseNavBar from './BaseNavBar'
@@ -53,16 +54,12 @@ export default class BaseContainer extends Component <Props>{
     renderContent() {
         const {store, children, onErrorPress,loading_children} = this.props;
         if (!store) return children;
-        const {isLoading, isError,isToast} = store;
+        const {isLoading, isError} = store;
 
         if (isLoading) {
             if(loading_children) return loading_children;
             return <Loading/>
         }
-        // if (isToast===true) {
-        //     DeviceEventEmitter.emit('show','显示');
-        // }
-        // if (isLoading) return loading_children;
         if (isError) return <BaseError onPress={onErrorPress || this.defaultPress}/>;
         return children;
     }
@@ -103,19 +100,49 @@ export default class BaseContainer extends Component <Props>{
     render() {
 
         const {style} = this.props;
-
+        this.changeImage = BaseImage.reader_background_brown_big_img6;
         const color = this.changeImage?'transparent':this.baseTheme.brightBackGroundColor;
-
         return(
-            this.isDark ? this.renderItem(color):
-
-            <ImageBackground
-                source={this.changeImage}
-                style={{flex:1,width:WIDTH}}>
-                {this.renderItem(color)}
-            </ImageBackground>
-
+            this.renderItem(this.baseTheme.brightBackGroundColor)
         )
+        // if (this.changeImage) {
+        //     this.isDark = true
+        // }
+        //
+
+       // if (this.isDark) {
+       //         return(
+       //             this.renderItem(this.baseTheme.brightBackGroundColor)
+       //         )
+       //     }else {
+       //         if (this.changeImage){
+       //             return(
+       //                 <ImageBackground
+       //                     source={this.changeImage}
+       //                     style={{flex:1,width:WIDTH}}>
+       //                     {this.renderItem('transparent')}
+       //                 </ImageBackground>
+       //             )
+       //         } else {
+       //             return(
+       //                 <ImageBackground
+       //                     style={{flex:1,width:WIDTH}}>
+       //                     {this.renderItem(this.baseTheme.brightBackGroundColor)}
+       //                 </ImageBackground>
+       //             )
+       //         }
+       //     }
+
+        // return(
+        //
+        //     this.isDark ? this.renderItem(color):
+        //     <ImageBackground
+        //         source={this.changeImage}
+        //         style={{flex:1,width:WIDTH}}>
+        //         {this.renderItem(color)}
+        //     </ImageBackground>
+        //
+        // )
     }
 
     renderItem=(color)=>{

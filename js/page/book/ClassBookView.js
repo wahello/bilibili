@@ -4,12 +4,12 @@
  */
 import * as React from 'react';
 import {SectionList,View,Text,FlatList,TouchableOpacity,StyleSheet,Animated,} from 'react-native';
-import {ImageView} from "../../component/ImageView";
-import {BaseString} from "../../base/";
+import {BaseString,BaseContainer} from "../../base/";
 import {BaseApi} from "../../assest/api";
 import {inject, observer} from "mobx-react";
 import {RouteHelper} from 'react-navigation-easy-helper';
 import {style} from "./Styles";
+import {ClassBookItemView} from "./component/ClassBookItemView";
 
 type Props={
     navigate:any,
@@ -29,7 +29,6 @@ export class ClassBookView extends React.Component<Props,State>{
     constructor(props) {
         super(props);
         // 初始状态
-        //this.navigate = this.props.navigate;
         this.baseTheme = this.props.baseTheme;
     }
 
@@ -45,13 +44,9 @@ export class ClassBookView extends React.Component<Props,State>{
             outputRange:[0,this.state.offset]
         });
 
-        const mHeight = this.state.lineXY.interpolate({
-            inputRange:[0,0.5,1],
-            outputRange:[20,40,20]
-        })
-
         return(
-            <View style={[style.container,{flexDirection:'row',backgroundColor:'transparent'}]}>
+
+            <View style={[style.container,{flexDirection:'row'}]}>
                 <FlatList
                     ref='scrollView'
                     data={BaseString.BOOK_CLASS_ARRAY}
@@ -169,27 +164,19 @@ export class ClassBookView extends React.Component<Props,State>{
 
 
         return(
-            <TouchableOpacity
-                activeOpacity={0.8}
+
+            <ClassBookItemView
                 onPress={()=>RouteHelper.navigate('ClassListView',{
                     major:item.name,
                     gender:item.type,
                     transition: 'forHorizontal1',
                 })}
-                style={style.renderItemTitle}>
-
-                <View style={style.ItemView}>
-                    <Text style={[style.itemTitle,{ color:this.baseTheme.brightTextColor}]}>{item.name}</Text>
-                    <Text style={[style.bookCount,{ color:this.baseTheme.brightTextColor}]}>{item.bookCount}本</Text>
-                </View>
-
-
-                <View style={style.bookItemImg}>
-                    <ImageView uri={image1} styles={style.bookItemImgView}/>
-                    <ImageView uri={image2} styles={style.bookItemImgView1}/>
-                    <ImageView uri={image3} styles={style.bookItemImgView2}/>
-                </View>
-            </TouchableOpacity>
+                name={item.name}
+                bookCount={item.bookCount}
+                image1={image1}
+                image2={image2}
+                image3={image3}
+            />
         )
     };
 }

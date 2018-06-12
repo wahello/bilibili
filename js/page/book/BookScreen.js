@@ -28,7 +28,6 @@ export class BookScreen extends React.Component{
 
     render(){
 
-        const {navigate} = this.props.navigation;
         let sections = toJS(this.bookClassStore.data);
 
         return(
@@ -36,9 +35,7 @@ export class BookScreen extends React.Component{
                 title={BaseString.TAB_BAR_HEADER_BOOK}
                 store={this.bookClassStore}
                 loading_children={<GifLoading/>}>
-                <ClassBookView
-                    navigate={navigate}
-                    sections={sections}/>
+                <ClassBookView sections={sections}/>
             </BaseContainer>
         )
     }

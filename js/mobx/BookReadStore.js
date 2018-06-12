@@ -27,33 +27,37 @@ export default class BookReadStore extends BasePageStore implements BookRead{
     @observable chapterTitle;
     @observable bookReadStore;
 
-    @action chapterFetch=(link)=>{
+    @action
+    async chapterFetch(link){
 
         // this.chapter_data =bookReadStore.chapter_data.slice();
         // this.title = bookReadStore.title;
         this.setLoading(true);
         let chapter_url = BaseApi.BookBase3 +link;
-        HttpUtils.get(chapter_url).then(action(data=>{
-            if (data){
-                if(data.chapter.cpContent){
-                    this.chapter = data.chapter.cpContent;
-                    this.isImages = false;
-                    setTimeout(()=>{
-                        this.setLoading(false);
-                    },500)
-                }else {
-                    this.chapter = (data.chapter.images).split(',');
-                    this.isImages = true;
-                    setTimeout(()=>{
-                        this.setLoading(false);
-                    },500)
+        try{
+            const dataSource = await HttpUtils.get(chapter_url);
+            runInAction(()=>{
+                if (dataSource){
+                    if(dataSource.chapter.cpContent){
+                        this.chapter = dataSource.chapter.cpContent;
+                        this.isImages = false;
+                        setTimeout(()=>{
+                            this.setLoading(false);
+                        },500)
+                    }else {
+                        this.chapter = (dataSource.chapter.images).split(',');
+                        this.isImages = true;
+                        setTimeout(()=>{
+                            this.setLoading(false);
+                        },500)
+                    }
+                    this.chapterTitle = dataSource.chapter.title;
                 }
-                this.chapterTitle = data.chapter.title;
-            }
-        })).catch((error)=>{
+            })
+        }catch (e) {
             console.log(error);
             this.showToast(true)
-        })
+        }
     }
 
 }

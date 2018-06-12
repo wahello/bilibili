@@ -12,8 +12,8 @@ import BaseImage from "../base/BaseImage";
 import SplashScreen from "../page/SplashScreen";
 import StackRoute from './StackRoute';
 import {configRoute} from 'react-navigation-easy-helper';
-import {ClassListView} from "../page/book/ClassListView";
-import {BookDetail} from "../page/book/BookDetail";
+import {ClassListView} from "../page/book/list/ClassListView";
+import {BookDetail} from "../page/book/detail/BookDetail";
 import CustomTabComponent from '../component/CustomTabComponent';
 
 const confing = {

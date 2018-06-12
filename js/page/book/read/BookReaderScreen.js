@@ -5,9 +5,9 @@
 import * as React from 'react';
 import {View, StatusBar} from 'react-native';
 import {observer,inject} from 'mobx-react';
-import {BaseContainer} from '../../base';
+import {BaseContainer} from '../../../base/index';
 import {BookReaderDetails} from './BookReaderDetails';
-import {BookImageDetails} from './BookImageDetails';
+import {BookImageDetails} from '../detail/BookImageDetails';
 
 @inject('baseTheme','bookReadStore','bookDetailStore')@observer
 export class BookReaderScreen extends React.Component{
@@ -23,6 +23,7 @@ export class BookReaderScreen extends React.Component{
       }
 
     componentDidMount() {
+
 
         if (this.link ===0){
            this.bookReadStore.chapterFetch(this.chapter_data[0].link)

@@ -4,8 +4,8 @@
  */
 import React from 'react';
 import {View,Text,Image,TouchableOpacity,ScrollView,StyleSheet,Animated} from 'react-native';
-import {scaleSize} from "../../utils/ScreenUtils";
-import {BaseString} from '../../base';
+import {scaleSize} from "../../../utils/ScreenUtils";
+import {BaseString} from '../../../base/index';
 import {observer,inject} from 'mobx-react';
 
 type Props ={

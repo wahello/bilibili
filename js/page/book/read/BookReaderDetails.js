@@ -3,8 +3,8 @@
  */
 import * as React from 'react';
 import {ImageBackground,ScrollView,Text,TouchableOpacity,View,SafeAreaView} from 'react-native';
-import {BaseImage,BaseString,BaseContainer} from '../../base';
-import {style} from "./Styles";
+import {BaseImage,BaseString,BaseContainer} from '../../../base/index';
+import {style} from "../Styles";
 import {observer,inject} from 'mobx-react';
 
 type Props = {
@@ -36,7 +36,7 @@ export class BookReaderDetails extends React.Component<Props,any>{
                 :
                 <SafeAreaView style={{flex:1,backgroundColor:this.brightBackGroundColor}}>
                     <ImageBackground
-                        style={{flex:1,width:WIDTH}}
+                        style={{flex:1,width:WIDTH,height:HEIGHT}}
                         source={BaseImage.reader_background_brown_big_img}>
                         {this.renderItem(title,content)}
                     </ImageBackground>

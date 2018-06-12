@@ -54,7 +54,7 @@ export const style = StyleSheet.create({
         flexDirection:'row',
         alignItems:'center',
         marginLeft:10,
-        marginBottom:10
+        marginBottom:10,
     },
     itemTitle:{
         marginBottom:5,
@@ -425,5 +425,133 @@ export const style = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         flexDirection:'row',
+    },
+
+    bookCommentsTopView:{
+        width:WIDTH,
+        height:HEIGHT/5,
+        flexDirection:'row',
+        alignItems:'center',
+    },
+    bookCommentsTopLeftImg:{
+        width:scaleSize(140),
+        height:scaleSize(200),
+        marginLeft:scaleSize(44)
+    },
+    bookCommentsTopLeftImg1:{
+        width:scaleSize(140),
+        height:scaleSize(200),
+        borderRadius:5,
+    },
+    bookCommentsTopTextView:{
+        width:WIDTH/2,
+        height:scaleSize(240),
+        marginLeft:scaleSize(44)
+    },
+    collectionView:{
+        width:80,
+        height:30,
+        borderRadius:30,
+        justifyContent:'center',
+        alignItems:'center',
+        position:'absolute',
+        right:20,
+        top:20
+    },
+    bookCommentsTabView:{
+        width:WIDTH,
+        height:40,
+        justifyContent:'space-around',
+        flexDirection:'row',
+        alignItems:'center',
+    },
+    bookCommentsTabTitle:{
+        fontSize:14
+    },
+    bookCommentsItemView:{
+        width:WIDTH,
+    },
+    bookCommentsItem:{
+        width:WIDTH,
+        height:100,
+        marginTop:20,
+    },
+    bookCommentsItemBottom:{
+        flexDirection:'row',
+        alignItems:'center',
+        marginLeft:20,
+    },
+    bookCommentsItemBottomLeftImage:{
+        width:scaleSize(110),
+        height:scaleSize(110),
+        borderRadius:30,
+        marginRight:15
+    },
+    bookCommentsItemRight:{
+        width:WIDTH/2,
+        height:10,
+        borderRadius:10,
+        marginVertical:5
+    },
+    bookReviewScreenView:{
+        width:WIDTH,
+        justifyContent:'center',
+        height:120,
+        paddingLeft:scaleSize(44),
+        paddingRight:scaleSize(44),
+    },
+    bookReviewScreenViewTitle:{
+        fontSize: 16,
+        fontWeight: IOS ? '400' : '400',
+        lineHeight:30
+    },
+    bookReviewScreenViewBottom:{
+        flexDirection:'row',
+        marginTop:10,
+    },
+    bookReviewScreenViewRight:{
+        flexDirection:'row',
+        position:'absolute',
+        right:20,
+        bottom:0,
+        height:40,
+        alignItems:'center'
+    },
+    commentTopViewLeft1:{
+        width:scaleSize(25),
+        height:scaleSize(25),
+        marginRight:5,
+    },
+    commentTopView:{
+        width:WIDTH,
+        height:60,
+        alignItems:'center',
+        flexDirection:'row',
+        borderBottomWidth:POXEL,
+        borderBottomColor:'#eaeaea'
+    },
+    commentTopViewLeft:{
+        width:scaleSize(40),
+        height:scaleSize(40),
+        marginLeft:scaleSize(44),
+        marginRight:10,
+    },
+    commentTopViewRight:{
+        fontSize:13,
+        fontWeight:'400'
+    },
+    itemSeparatorComponent:{
+        width:WIDTH,
+        height:POXEL,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    bookReviewScreenContent:{
+        fontSize:15,
+        lineHeight:25
+    },
+    ratingView:{
+        position:'absolute',
+        right:100,
     },
 });

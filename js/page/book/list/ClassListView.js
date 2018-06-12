@@ -7,7 +7,7 @@ import {observer,inject} from 'mobx-react'
 import {ClassListViewTopView} from "./ClassListViewTopView";
 import {ClassBookListView} from "./ClassBookListView";
 import {View} from 'react-native';
-import {BaseContainer} from '../../base';
+import {BaseContainer} from '../../../base/index';
 import {RouteHelper} from 'react-navigation-easy-helper';
 import {BookListLoading} from "./ClassBookListView";
 

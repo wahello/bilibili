@@ -3,10 +3,10 @@
  */
 import * as React from 'react';
 import {ImageBackground,ScrollView,Text,TouchableOpacity,View,FlatList,SafeAreaView} from 'react-native';
-import {BaseImage,BaseString} from '../../base';
-import {style} from "./Styles";
+import {BaseImage,BaseString} from '../../../base/index';
+import {style} from "../Styles";
 // import {SafeAreaView} from 'react-navigation';
-import AutoSizingImage from '../../component/AutoSizingImage';
+import AutoSizingImage from '../../../component/AutoSizingImage';
 type Props = {
    data:Array<any>
 }

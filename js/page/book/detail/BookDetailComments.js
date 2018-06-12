@@ -4,21 +4,21 @@
  */
 import React from 'react';
 import {View,Text,TouchableOpacity,Image} from 'react-native';
-import {BaseImage} from "../../base";
-import {style} from "./Styles";
+import {BaseImage} from "../../../base/index";
+import {style} from "../Styles";
 import {observer,inject} from 'mobx-react';
-import {ImageView} from "../../component/ImageView";
+import {ImageView} from "../../../component/ImageView";
 import StarRating from 'react-native-star-rating';
-import {BaseString} from '../../base';
-import {ClearBr,getTime} from '../../fun';
-import {BaseApi} from "../../assest/api";
+import {BaseString} from '../../../base/index';
+import {ClearBr,getTime} from '../../../fun/index';
+import {BaseApi} from "../../../assest/api";
 import {RouteHelper} from 'react-navigation-easy-helper';
-
 
 type Props={
     evaluation_data:Array<any>,
     evaluation_total:number,
     nowDate:number,
+    id:number|string
 }
 
 @inject('baseTheme','bookDetailStore')
@@ -32,7 +32,10 @@ export class BookDetailComments extends React.Component<Props,any>{
         this.brightBackGroundColor = this.props.baseTheme.brightBackGroundColor;
         this.brightTextColor = this.props.baseTheme.brightTextColor;
         this.brightNavTextColor = this.props.baseTheme.brightNavTextColor;
+
     }
+
+
 
     render(){
 

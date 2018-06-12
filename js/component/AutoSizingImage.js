@@ -1,12 +1,28 @@
+/**
+ * @flow
+ */
 import React, { Component } from 'react'
 import { StyleSheet, View } from 'react-native'
 import FastImage from 'react-native-fast-image';
+import type {Style} from "../utils/type";
 
-export default class AutoSizingImage extends Component {
-    state = {
+type Props={
+    uri:string,
+    width:number,
+    style:Style,
+    onLoad:()=>void
+}
+
+type State={
+    height:number,
+    width:number
+}
+
+export default class AutoSizingImage extends Component<Props,State> {
+    state:State = {
         height: 0,
         width: 0,
-    }
+    };
 
     onLoad = e => {
         const {
@@ -38,4 +54,27 @@ export default class AutoSizingImage extends Component {
         )
     }
 }
+
+
+type Props={
+    styles:Style,
+    uri:string|number,
+    children:React.Children
+}
+/**
+ * 图片显示组件
+ * @param props
+ * @returns {*}
+ * @constructor
+ */
+export const ImageView=(props:Props)=>(
+    <FastImage
+        style={props.styles}
+        source={
+            {uri:props.uri, priority: FastImage.priority.normal,cache:'force-cache'}
+        }
+        resizeMode={FastImage.resizeMode.contain}>
+        {props.children}
+    </FastImage>
+);
 

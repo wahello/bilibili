@@ -4,14 +4,14 @@
  */
 import React from 'react';
 import {View,Text} from 'react-native';
-import {BaseImage} from "../../base";
-import {style} from "./Styles";
+import {BaseImage} from "../../../base/index";
+import {style} from "../Styles";
 import {observer,inject} from 'mobx-react';
-import {ImageView} from "../../component/ImageView";
+import {ImageView} from "../../../component/ImageView";
 import StarRating from 'react-native-star-rating';
-import {BaseString} from '../../base';
-import {scaleSize} from "../../utils/ScreenUtils";
-import AutoSizingImage from '../../component/AutoSizingImage';
+import {BaseString} from '../../../base/index';
+import {scaleSize} from "../../../utils/ScreenUtils";
+import AutoSizingImage from '../../../component/AutoSizingImage';
 
 type Props = {
     cover:string,
