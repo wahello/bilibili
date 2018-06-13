@@ -18,7 +18,6 @@ import {Loading} from "./BaseLoading";
 import {Toast} from "../utils/Toast";
 import store from "../mobx";
 
-
 type Props={
     store: any,
     onErrorPress: ()=>mixed,

@@ -70,7 +70,7 @@ export const BookDetailLoading =inject('baseTheme')(observer(({baseTheme})=>{
     )
 }))
 
-export const BookDetailBottomView = inject('baseTheme')(observer(({baseTheme,addBookcase,bstartRead})=>{
+export const BookDetailBottomView = inject('baseTheme')(observer(({baseTheme,addBookcase,startRead})=>{
     return(
         <View style={[style.bookBottomView,{ backgroundColor:baseTheme.brightNavBackGroundColor,}]}>
             <View style={style.ChaseView}>
@@ -84,7 +84,7 @@ export const BookDetailBottomView = inject('baseTheme')(observer(({baseTheme,add
             <View style={style.ChaseView}>
                 <TouchableOpacity
                     activeOpacity={0.9}
-                    onPress={bstartRead}
+                    onPress={startRead}
                     style={[style.dotChaseView,{backgroundColor:'red'}]}>
                     <Text style={[style.dotChaseTitle,{color:'#FFF'}]}>开始阅读</Text>
                 </TouchableOpacity>

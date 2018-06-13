@@ -554,4 +554,16 @@ export const style = StyleSheet.create({
         position:'absolute',
         right:100,
     },
+    bookCommentPerTopTitle:{
+        fontSize: 20,
+        fontWeight: IOS ? '700' : '500',
+    },
+    bookCommentPerBottom:{
+        width:WIDTH-40,
+        height:140,
+        borderRadius:5,
+        alignItems:'center',
+        marginTop:20,
+        flexDirection:'row'
+    },
 });

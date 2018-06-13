@@ -77,7 +77,7 @@ export default class bookClassListStore extends BasePageStore implements BookCla
             gender:gender,type:type,major:major,minor:minor,start:start,limit:20
         };
         try{
-            const dataSource =  HttpUtils.get(url, params);
+            const dataSource = await HttpUtils.get(url, params);
             runInAction(()=>{
                 this.data = this.data.concat(dataSource.books);
                 this.loadingMore  = false;

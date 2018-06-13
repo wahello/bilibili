@@ -8,6 +8,7 @@ import {ImageView} from "../../../component/AutoSizingImage";
 import {BaseImage} from '../../../base';
 import {style} from "../Styles";
 import StarRating from "react-native-star-rating";
+import {BookCommentDetail} from "./BookCommentDetail";
 
 @inject('baseTheme','bookCommentStore','bookDetailStore')
 @observer
@@ -60,7 +61,7 @@ export default class BookCommentReview extends React.Component{
         return(
             <TouchableOpacity
                 activeOpacity={0.8}
-                onPress={()=> RouteHelper.navigate('BookCommentPer',params)}>
+                onPress={()=> RouteHelper.navigate('BookCommentDetail',params)}>
                 <View style={[style.bookReviewScreenView,{height:200,backgroundColor:this.baseTheme.brightBackGroundColor}]}>
                     <Text style={[style.bookReviewScreenViewTitle,{color:this.baseTheme.brightNavTextColor}]} numberOfLines={1}>{title}</Text>
                     <Text numberOfLines={3} style={[style.bookReviewScreenContent,{color:this.baseTheme.brightTextColor,}]}>{content}</Text>

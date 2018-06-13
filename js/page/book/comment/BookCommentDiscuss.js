@@ -7,6 +7,7 @@ import {RouteHelper} from 'react-navigation-easy-helper';
 import {ImageView} from "../../../component/AutoSizingImage";
 import {BaseImage} from '../../../base';
 import {style} from "../Styles";
+import {BookCommentDetail} from "./BookCommentDetail";
 
 @inject('baseTheme','bookCommentStore')
 @observer
@@ -56,7 +57,7 @@ export default class BookCommentDiscuss extends React.Component{
         return(
             <TouchableOpacity
                 activeOpacity={0.8}
-                onPress={()=> RouteHelper.navigate('BookCommentPer',params)}>
+                onPress={()=> RouteHelper.navigate('BookCommentDetail',params)}>
                 <View style={[style.bookReviewScreenView,{ backgroundColor:this.baseTheme.brightBackGroundColor,}]}>
                     <Text style={[style.bookReviewScreenViewTitle,{color:this.baseTheme.brightNavTextColor}]} numberOfLines={2}>{title}</Text>
                     <View style={style.bookReviewScreenViewBottom}>

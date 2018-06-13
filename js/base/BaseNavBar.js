@@ -74,7 +74,7 @@ export default class BaseNavBar extends React.Component<Props>{
                     source={this.baseTheme.isDark?BaseImage.back_bright:BaseImage.back_dark}
                     color={this.baseTheme.brightNavTextColor}
                 />}
-                {renderTitleView || <Text style={[styles.title, titleStyle,{color: this.baseTheme.brightNavTextColor,}]}>{title || ''}</Text>}
+                {renderTitleView || <Text numberOfLines={1} style={[styles.title, titleStyle,{color: this.baseTheme.brightNavTextColor,}]}>{title || ''}</Text>}
                 {renderTitleView && renderTitleView()}
                 {rightTitle && <RightItem text={rightTitle} onPress={onRight} />}
                 {rightIcon && <RightIconItem icon={rightIcon} onPress={onRight} />}
@@ -144,6 +144,7 @@ const styles = StyleSheet.create({
     title: {
         textAlign: 'center',
         fontSize: 18,
+        width:WIDTH/2,
     },
     leftItem: {
         position: 'absolute',

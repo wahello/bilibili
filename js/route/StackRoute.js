@@ -7,6 +7,7 @@ import {BookDetail} from '../page/book/detail/BookDetail';
 import {BookSideMenu} from "../page/book/BookSideMenu";
 import {BookReaderScreen} from "../page/book/read/BookReaderScreen";
 import {BookComments} from "../page/book/comment/BookComments";
+import {BookCommentDetail} from '../page/book/comment/BookCommentDetail';
 
 const confing = {
     gesturesEnabled:true,
@@ -47,6 +48,9 @@ const StackRoute = {
     },
     BookComments:{
         screen:BookComments
+    },
+    BookCommentDetail:{
+        screen:BookCommentDetail
     }
     //Test:BaseStack.StackItem(Test,'标题'),
 };
