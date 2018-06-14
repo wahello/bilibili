@@ -58,7 +58,7 @@ export class Toast extends React.Component{
 
         const height = this.state.height.interpolate({
             inputRange:[0,1],
-            outputRange:[-44-this.top,-10]
+            outputRange:[-44-this.top,0]
         });
 
         return(

@@ -25,9 +25,11 @@ export class BookDetail extends React.Component{
         // 初始状态
         this.id = this.props.navigation.state.params.id;
         this.bookTitle = this.props.navigation.state.params.bookTitle;
-        this.bookDetailStore = this.props.bookDetailStore
+        this.bookDetailStore = this.props.bookDetailStore;
         this.brightBackGroundColor = this.props.baseTheme.brightBackGroundColor;
         this.brightNavTextColor = this.props.baseTheme.brightNavTextColor;
+
+        console.log(this.id,this.bookTitle);
     }
 
     componentDidMount() {

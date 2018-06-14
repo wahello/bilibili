@@ -102,7 +102,7 @@ export default class BaseContainer extends Component <Props>{
         const {store} = this.props;
         if (store){
             const {isSearch} = store;
-            console.log('搜索',isSearch)
+
             if(isSearch){
                 return <Search/>
             }else {

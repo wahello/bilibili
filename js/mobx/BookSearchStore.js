@@ -11,6 +11,12 @@ interface BookSearch{
     bookResult:Array<any>,
     textInputContext:string | number,
     automatically:Array<any>,
+    auther:string,
+    autherList:Array<any>,
+    hotRecommended:Array<any>,
+    ugcBooklist:Array<any>,
+    questionsList:Array<any>,
+    communityList:Array<any>
 }
 
 export default class BookSearchStore extends BasePageStore implements BookSearch{
@@ -19,30 +25,48 @@ export default class BookSearchStore extends BasePageStore implements BookSearch
     @observable bookResult=[];
     @observable textInputContext='';
     @observable automatically=[];
+    @observable atuher='';
+    @observable autherList=[];
+    @observable hotRecommended=[];
+    @observable ugcBooklist=[];
+    @observable questionsList=[];
+    @observable communityList=[];
 
     constructor(){
         super();
-        console.log(this.isSearch);
     }
 
     //热词搜索
     @action
     async fetchHotwords(){
 
-         this.setLoading(true);
          let url = BaseApi.BookBase1 +BookApi.hotwords;
 
          try{
              const dataSource = await HttpUtils.get(url);
              runInAction(()=>{
                  this.hotBook = dataSource.searchHotWords;
-                 this.setLoading(false)
              })
          }catch (e) {
             console.log(e);
             this.hotBook.length ===0?this.setError(true):this.showToast(true)
          }
     }
+    //热门推荐
+    @action
+    async fetchHotRecommended(){
+        let url = BaseApi.BookBase1 +BookApi.hot_recommended;
+
+        try{
+            const dataSource = await HttpUtils.get(url);
+            runInAction(()=>{
+                this.hotRecommended = dataSource;
+            })
+        }catch (e) {
+            console.log(e);
+        }
+    }
+
     //搜索
     @action
     async fetchSearchData(){
@@ -75,7 +99,7 @@ export default class BookSearchStore extends BasePageStore implements BookSearch
         try{
             const dataSource = await HttpUtils.get(url, params);
             runInAction(()=>{
-                console.log(dataSource.keywords.length)
+
                 if (dataSource.keywords.length>0){
                     this.automatically = dataSource.keywords;
                     console.log(this.automatically)
@@ -87,6 +111,79 @@ export default class BookSearchStore extends BasePageStore implements BookSearch
             console.log(e)
         }
 
+    }
+
+    //设置作者
+    @action setAuther=(auther:string)=>{
+        this.atuher = auther;
+    };
+
+    //作者数据列表
+    @action
+    async fetchAutherData(){
+        this.setLoading(true);
+        let url = BaseApi.BookBase1 + BookApi.accurate_search;
+        let params = {
+            author:this.atuher
+        };
+
+        try{
+            const dataSource = await HttpUtils.get(url,params);
+            runInAction(()=>{
+                this.autherList = dataSource;
+                this.setLoading(false);
+            })
+        }catch (e) {
+            console.log(e);
+
+        }
+    }
+
+    //搜索页书单
+    @action
+    async fetchUgcBookList(){
+        this.setLoading(true);
+        let url =BaseApi.BookBase1 + BookApi.ugcbooklist_search;
+        let params={
+            query:this.textInputContext
+        };
+        try{
+            let dataSource = await HttpUtils.get(url,params);
+            this.ugcBooklist = dataSource;
+            this.setLoading(false)
+        }catch (e) {
+            console.log(e);
+        }
+    }
+
+    //搜索页书荒
+    @action
+    async fetchQuestionsList(){
+        this.setLoading(true);
+        let url = BaseApi.BookBase1 + BookApi.questions;
+        let params={
+            tab:search,term:this.textInputContext
+        };
+        try{
+            let dataSource = await HttpUtils.get(url,params);
+            this.questionsList = dataSource;
+            this.setLoading(false)
+        }catch (e) {
+            console.log(e);
+        }
+    }
+
+    //搜索页社区
+    @action
+    async fetchCommunityList(){
+        this.setLoading(true);
+        let url =BaseApi.BookBase1 + BookApi.post_searchl
+        try{
+            let dataSource = await HttpUtils.get(url);
+            this.communityList = dataSource;
+        }catch (e) {
+            console.log(e);
+        }
     }
 
     //清除搜索内容
@@ -106,6 +203,4 @@ export default class BookSearchStore extends BasePageStore implements BookSearch
             return true
         }
     }
-
-
 }

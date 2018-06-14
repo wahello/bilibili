@@ -3,6 +3,7 @@ import {View, Animated, Easing, TextInput, StatusBar,Image, TouchableOpacity, Te
 import {BaseImage,BaseString} from '../../base';
 import {observer,inject} from 'mobx-react';
 import {style} from "./Style";
+import {RouteHelper} from 'react-navigation-easy-helper';
 
 @inject('baseTheme','basePageStore','bookSearchStore')
 @observer
@@ -107,7 +108,7 @@ export class Search extends React.Component{
                                 onChange={this.onChange}
                                 returnKeyType='search'
                                 onChangeText={(e)=>this.onChangeText(e)}
-                                value={this.bookSearchStore.textInputContext}
+                                defaultValue={this.bookSearchStore.textInputContext}
                                 onSubmitEditing={this.onSubmitEditing}
                             />
                             {this.bookSearchStore.textInputContext.length>0?
@@ -150,19 +151,39 @@ export class Search extends React.Component{
     _keyExtractor=(item,i)=>i+'';
 
     _renderItem=({item})=>{
+        console.log(item);
         return(
-            <View style={style.keywords}>
-                <Text style={{color:this.brightTextColor}}>{item}</Text>
-            </View>
+            <TouchableOpacity
+                onPress={()=>this.onPress(item)}
+                activeOpacity={0.9}
+                style={style.keywords}>
+                <Text style={{color:this.brightTextColor}}>{item.text}</Text>
+            </TouchableOpacity>
         )
+    };
+
+    onPress(item){
+       // console.log(item);
+       if(item.tag ==='bookname'){
+           RouteHelper.navigate('BookDetail',{id:item.id,bookTitle:item.text})
+       }else if(item.tag === 'cat'){
+           //TODO 跳转分类页  gender,major,minor,text
+
+       }else if(item.tag ==='bookauthor'){
+            //TODO 跳转到作者列表
+           this.bookSearchStore.atuher = item.text;
+       }
+
     }
 
     //搜索按钮
     onSubmitEditing=()=>{
+        //TODO 点击键盘搜索,进入另外一个有书单的页面
         this.bookSearchStore.fetchSearchData()
     };
 
     onChangeText(e){
+        //TODO 输入框模糊搜索,点击条目进入书本详情
        this.bookSearchStore.inputTextContext(e);
     };
 

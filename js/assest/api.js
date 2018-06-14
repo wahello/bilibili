@@ -35,14 +35,22 @@ const BookApi={
     atoc:'/atoc/',//  获取小说正版源于盗版源(混合)
     mix_atoc:'/mix-atoc/', // 获取小说章节(根据小说id)
     short_evaluation:'/post/short-review?book=',
+    book_list:'/book-list',//包含此书的书单  //TODO /book-list/id/recommend?limit=10&start=0
+    book_list_detail:'/book-list',//书单详情 //TODO /book-list/id
     recommend:'/recommend',
     by_book:'/post/by-book', //讨论
     short_review:'/post/short-review', //短评
     review:'/post/review/by-book',
     price:'/price-info',
     hotwords:'/book/search-hotwords',//热词
+    hot_recommended:'/book/hot-word',//搜索热门推荐
     search:'/book/fuzzy-search',//模糊搜索
-    automatically:'/book/auto-complete' //搜索自动补充
+    automatically:'/book/auto-suggest', //搜索自动补充
+    accurate_search:'/book/accurate-search',//作者搜索
+    ugcbooklist_search:'/book-list/ugcbooklist-search',// 搜索页的书单
+    questions:'/bookAid/questions',//搜索页书荒 tab=search&term
+    post_search:'/post/post-search', //搜索页社区
+    book_tag:'/book/by-tags'// 标签搜索 //TODO /book/by-tags?tags=种田&start=0&limit=50
 };
 
 
