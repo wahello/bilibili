@@ -31,6 +31,9 @@ export default class BaseTheme implements Theme{
     @observable brightDefaultColor = brightColor.brightDefaultColor;
     @observable brightReadTextColor = brightColor.brightReadTextColor;
     @observable brightSettingItemColor = brightColor.brightSettingItemColor;
+    @observable brightSearchColor = brightColor.brightSearchColor;
+    @observable brightSearchImage = brightColor.brightSearchImage;
+    @observable brightSearchClose = brightColor.brightSearchClose;
 
     @observable isDark =false;
     @observable isIPhoneX = DeviceInfo.isIPhoneX_deprecated;
@@ -61,6 +64,9 @@ export default class BaseTheme implements Theme{
         this.brightDefaultColor = darkColor.brightDefaultColor;
         this.brightReadTextColor = darkColor.brightReadTextColor;
         this.brightSettingItemColor = darkColor.brightSettingItemColor;
+        this.brightSearchColor = darkColor.brightSearchColor;
+        this.brightSearchImage = darkColor.brightSearchImage;
+        this.brightSearchClose = darkColor.brightSearchClose;
         this.isDark = true
 
     }
@@ -68,8 +74,6 @@ export default class BaseTheme implements Theme{
      * 改变背景图片
      */
     @action changeBgImage=()=>{
-        console.log(this.changeImage)
         this.changeImage = BaseImage.reader_background_brown_big_img6
-        console.log(this.changeImage)
     }
 }

@@ -17,6 +17,8 @@ import {BaseError,BaseImage} from './index';
 import {Loading} from "./BaseLoading";
 import {Toast} from "../utils/Toast";
 import store from "../mobx";
+import {Search} from '../page/search/Search';
+
 
 type Props={
     store: any,
@@ -64,7 +66,7 @@ export default class BaseContainer extends Component <Props>{
     }
 
     /**
-     * 头部组件的控制
+     * 全局头部组件的控制
      * @returns {*}
      */
     renderNavView() {
@@ -91,6 +93,21 @@ export default class BaseContainer extends Component <Props>{
             if (isToast){
                 //DeviceEventEmitter.emit('show','显示');
                 return <Toast toastMsg={toastMsg}/>
+            }
+        }
+        return null
+    }
+
+    renderSearch(){
+        const {store} = this.props;
+        if (store){
+            const {isSearch} = store;
+            console.log('搜索',isSearch)
+            if(isSearch){
+                return <Search/>
+            }else {
+                return null
+
             }
         }
         return null
@@ -148,6 +165,7 @@ export default class BaseContainer extends Component <Props>{
 
         return( <View style={[styles.container,{backgroundColor:color}]}>
                 {this.renderToast()}
+                {this.renderSearch()}
                 {this.renderNavView()}
                 {this.renderContent()}
                 <StatusBar

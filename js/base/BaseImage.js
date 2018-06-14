@@ -40,6 +40,12 @@ class BaseImage {
     loading_gif_three:string=require('../assest/icon/loading_3.png');
     loading_gif_four:string =require('../assest/icon/loading_4.png');
 
+    search_bright:string = require('../assest/icon/search_dark.png');
+    search_dark:string = require('../assest/icon/search_bright.png');
+
+    search_close_bright:string = require('../assest/icon/search_close_bright.png');
+    search_close_dark:string = require('../assest/icon/search_close_dark.png');
+
 }
 
 const baseImage  = new BaseImage();

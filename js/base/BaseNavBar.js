@@ -76,8 +76,8 @@ export default class BaseNavBar extends React.Component<Props>{
                 />}
                 {renderTitleView || <Text numberOfLines={1} style={[styles.title, titleStyle,{color: this.baseTheme.brightNavTextColor,}]}>{title || ''}</Text>}
                 {renderTitleView && renderTitleView()}
-                {rightTitle && <RightItem text={rightTitle} onPress={onRight} />}
-                {rightIcon && <RightIconItem icon={rightIcon} onPress={onRight} />}
+                {rightTitle && <RightItem text={rightTitle} onPress={onRight} top={this.top}/>}
+                {rightIcon && <RightIconItem icon={rightIcon} onPress={onRight} top={this.top}/>}
                 {renderRightItem &&
                 <TouchableOpacity
                     activeOpacity={0.75}
@@ -114,7 +114,7 @@ const RightItem = ({onPress, text}) => {
     return (
         <TouchableOpacity
             activeOpacity={0.75}
-            style={[styles.rightItem,{ top: this.top,}]}
+            style={[styles.rightItem,{ top: porps.top,}]}
             onPress={onPress}
         >
             <Text style={{fontSize: 15, color: '#666666'}}>{text}</Text>
@@ -122,11 +122,11 @@ const RightItem = ({onPress, text}) => {
     );
 };
 
-const RightIconItem = ({onPress, icon}) => {
+const RightIconItem = ({onPress, icon,top}) => {
     return (
         <TouchableOpacity
             activeOpacity={0.75}
-            style={[styles.rightIconItem,{top: this.top}]}
+            style={[styles.rightIconItem,{top:top}]}
             onPress={onPress}
         >
             <Image style={{width: 18, height: 18}} source={icon} resizeMode="contain" />
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
     },
     rightIconItem: {
         position: 'absolute',
-        right: 0,
+        right: 15,
         height: 44,
         paddingRight: 10,
         justifyContent: 'center',

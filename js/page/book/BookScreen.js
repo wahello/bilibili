@@ -3,7 +3,7 @@
  * 图书
  */
 import * as React from 'react';
-import {BaseContainer, BaseString} from '../../base';
+import {BaseContainer, BaseString,BaseImage} from '../../base';
 import {observer,inject} from 'mobx-react';
 import {toJS} from 'mobx';
 import {ClassBookView} from "./ClassBookView";
@@ -18,7 +18,7 @@ export class BookScreen extends React.Component{
     constructor(props) {
         super(props);
         this.bookClassStore = this.props.bookClassStore;
-        this.baseTheme = this.props.baseTheme;
+        this.isDark = this.props.baseTheme.isDark;
     }
     
     componentDidMount() {
@@ -29,15 +29,20 @@ export class BookScreen extends React.Component{
     render(){
 
         let sections = toJS(this.bookClassStore.data);
-
         return(
             <BaseContainer
                 title={BaseString.TAB_BAR_HEADER_BOOK}
+                rightIcon={this.isDark?BaseImage.search_dark:BaseImage.search_bright}
+                onRight={this.onRight}
                 store={this.bookClassStore}
                 loading_children={<GifLoading/>}>
                 <ClassBookView sections={sections}/>
             </BaseContainer>
         )
+    }
+
+    onRight=()=>{
+        this.bookClassStore.startSerch();
     }
 }
 

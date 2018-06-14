@@ -102,6 +102,7 @@ export class HttpUtils {
             url = this.host + url;
         }
         return Promise.race([new Promise((resolve, reject) => {
+
             fetch(url, {
                 method: method,
                 header: header,

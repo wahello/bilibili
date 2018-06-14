@@ -3,6 +3,8 @@
  * 颜色管理类
  */
 
+import {BaseImage} from './BaseImage';
+
 interface ThemeColor {
 
     brightBackGroundColor:string;
@@ -21,6 +23,9 @@ interface ThemeColor {
     brightDefaultColor:string;
     brightReadTextColor:string;
     brightSettingItemColor:string;
+    brightSearchColor:string,
+    brightSearchImage:string,
+    brightSearchClose:string,
 }
 
 /**
@@ -44,7 +49,9 @@ class BrightColor implements ThemeColor{
     brightDefaultColor='#EAEAEA';
     brightReadTextColor='#604733';
     brightSettingItemColor='#F7F7F7';
-
+    brightSearchColor='#dfdfdf';
+    brightSearchImage = require('../assest/icon/search_dark.png');
+    brightSearchClose = require('../assest/icon/search_close_bright.png');
 
 }
 
@@ -68,7 +75,11 @@ class DarkColor implements ThemeColor{
     brightRecommended='#303030';
     brightDefaultColor='#303030';
     brightReadTextColor='#FBFBFB';
-    brightSettingItemColor='#303030'
+    brightSettingItemColor='#303030';
+    brightSearchColor = '#202020';
+    brightSearchImage = require('../assest/icon/search_bright.png');
+    brightSearchClose = require('../assest/icon/search_close_dark.png');
+
 
 }
 

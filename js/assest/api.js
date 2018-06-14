@@ -40,6 +40,9 @@ const BookApi={
     short_review:'/post/short-review', //短评
     review:'/post/review/by-book',
     price:'/price-info',
+    hotwords:'/book/search-hotwords',//热词
+    search:'/book/fuzzy-search',//模糊搜索
+    automatically:'/book/auto-complete' //搜索自动补充
 };
 
 

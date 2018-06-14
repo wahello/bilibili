@@ -9,6 +9,7 @@ import {Toast} from "../utils/Toast";
 import {BaseString} from '../base';
 import {BasePageStore} from "./BasePageStore";
 import {dealArray} from "../fun";
+import {Book} from "../route/TabRoute";
 
 interface BookClass {
     data:Array<any>,
@@ -42,6 +43,12 @@ export default class BookClassStore extends BasePageStore implements BookClass{
         }
     }
 
+    @action startSerch=()=>{
+        this.showSearch(true)
+        // setTimeout(()=>{
+        //     this.showSearch(false)
+        // },100)
+    }
 }
 
 
