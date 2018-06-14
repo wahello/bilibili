@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Animated, Easing, TextInput, StatusBar,Image, TouchableOpacity, Text, Keyboard} from 'react-native';
+import {View, Animated, Easing, TextInput, StatusBar,Image, TouchableOpacity, Text, Keyboard,FlatList} from 'react-native';
 import {BaseImage,BaseString} from '../../base';
 import {observer,inject} from 'mobx-react';
 import {style} from "./Style";
@@ -85,59 +85,77 @@ export class Search extends React.Component{
             });
 
 
-            return[
-                <StatusBar barStyle='dark-content'/>,
-                <Animated.View style={[style.topSearchView,{
-                    height:44+this.top,
-                    width:WIDTH,
-                    paddingTop:this.top,
-                    backgroundColor:this.brightSettingItemColor,
-                    transform:[{translateY:searchTop}]}]}>
-                     <View style={style.searchInputView}>
-                        <TextInput
-                            ref='searchTextInput'
-                            placeholder={BaseString.SEARCH_CONTEXT}
-                            placeholderTextColor={this.brightTextColor}
-                            underlineColorAndroid="transparent"
-                            style={[style.searchView,{
-                                backgroundColor:this.brightSearchColor,
+            return(
+                <View style={{flex:1,position:'absolute',top:0,backgroundColor:'transparent',zIndex:99}}>
+                    <StatusBar barStyle='dark-content'/>
+                    <Animated.View style={[style.topSearchView,{
+                        height:44+this.top,
+                        width:WIDTH,
+                        paddingTop:this.top,
+                        backgroundColor:this.brightSettingItemColor,
+                        transform:[{translateY:searchTop}]}]}>
+                        <View style={style.searchInputView}>
+                            <TextInput
+                                ref='searchTextInput'
+                                placeholder={BaseString.SEARCH_CONTEXT}
+                                placeholderTextColor={this.brightTextColor}
+                                underlineColorAndroid="transparent"
+                                style={[style.searchView,{
+                                    backgroundColor:this.brightSearchColor,
                                     borderRadius:30,color:this.brightTextColor
-                            }]}
-                            onChange={this.onChange}
-                            returnKeyType='search'
-                            onChangeText={(e)=>this.onChangeText(e)}
-                            value={this.bookSearchStore.textInputContext}
-                            onSubmitEditing={this.onSubmitEditing}
+                                }]}
+                                onChange={this.onChange}
+                                returnKeyType='search'
+                                onChangeText={(e)=>this.onChangeText(e)}
+                                value={this.bookSearchStore.textInputContext}
+                                onSubmitEditing={this.onSubmitEditing}
                             />
-                        {this.bookSearchStore.textInputContext.length>0?
+                            {this.bookSearchStore.textInputContext.length>0?
+                                <TouchableOpacity
+                                    onPress={this.clearTextInputContext}
+                                    activeOpacity={1}
+                                    style={style.closeView}>
+                                    <Image
+                                        style={style.closeImage}
+                                        source={this.isDark?BaseImage.search_close_dark:BaseImage.search_close_bright}/>
+                                </TouchableOpacity>: null}
+
+                        </View>
                         <TouchableOpacity
-                            onPress={this.clearTextInputContext}
-                            activeOpacity={1}
-                            style={style.closeView}>
-                            <Image
-                                style={style.closeImage}
-                                source={this.isDark?BaseImage.search_close_dark:BaseImage.search_close_bright}/>
-                        </TouchableOpacity>: null}
+                            onPress={this.onCancel}
+                            activeOpacity={0.9}
+                            style={style.cancel}>
+                            <Text style={{color:this.brightTextColor}}>{BaseString.CANCEL}</Text>
+                        </TouchableOpacity>
 
-                    </View>
-                    <TouchableOpacity
-                        onPress={this.onCancel}
-                        activeOpacity={0.9}
-                        style={style.cancel}>
-                    <Text style={{color:this.brightTextColor}}>{BaseString.CANCEL}</Text>
-                    </TouchableOpacity>
-
-                     </Animated.View>,
+                    </Animated.View>
                     <Animated.View
                         style={[style.bottomSearchView,{
                             backgroundColor:this.brightBackGroundColor,
-                                height:HEIGHT,
-                                transform:[{translateY:searchBottom}]
+                            height:HEIGHT,
+                            transform:[{translateY:searchBottom}]
                         }]}>
-
+                        <FlatList
+                            data={this.bookSearchStore.automatically.slice(0)}
+                            keyExtractor={this._keyExtractor}
+                            showsVerticalScrollIndicator={false}
+                            onEndReachedThreshold={0.1}
+                            initialNumToRender={10}
+                            renderItem={this._renderItem}/>
                     </Animated.View>
-            ]
+                </View>
+            )
         }
+
+    _keyExtractor=(item,i)=>i+'';
+
+    _renderItem=({item})=>{
+        return(
+            <View style={style.keywords}>
+                <Text style={{color:this.brightTextColor}}>{item}</Text>
+            </View>
+        )
+    }
 
     //搜索按钮
     onSubmitEditing=()=>{

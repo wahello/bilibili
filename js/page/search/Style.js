@@ -58,5 +58,11 @@ export const style = StyleSheet.create({
     closeImage:{
         width:20,
         height:20
+    },
+    keywords:{
+        width:WIDTH,
+        height:40,
+        justifyContent:'center',
+        paddingLeft:20,
     }
 })

@@ -75,6 +75,7 @@ export default class BookSearchStore extends BasePageStore implements BookSearch
         try{
             const dataSource = await HttpUtils.get(url, params);
             runInAction(()=>{
+                console.log(dataSource.keywords.length)
                 if (dataSource.keywords.length>0){
                     this.automatically = dataSource.keywords;
                     console.log(this.automatically)
