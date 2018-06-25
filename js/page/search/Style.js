@@ -64,5 +64,23 @@ export const style = StyleSheet.create({
         height:40,
         justifyContent:'center',
         paddingLeft:20,
+    },
+    hot_word:{
+        width:WIDTH,
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'center',
+        height:40,
+    },
+    hot_word_left:{
+        fontSize:16,
+        marginLeft:20
+    },
+    hot_word_right:{
+        fontSize:12,
+        marginRight:10
+    },
+    hot_word_item:{
+        
     }
 })

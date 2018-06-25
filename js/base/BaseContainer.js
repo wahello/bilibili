@@ -6,15 +6,14 @@ import React, {Component} from 'react';
 import {
     View,
     StyleSheet,
-    StatusBar,
     ImageBackground,
     DeviceEventEmitter,
-    
+    StatusBar, Platform
 } from 'react-native';
 import {observer,inject} from 'mobx-react';
 import BaseNavBar from './BaseNavBar'
 import {BaseError,BaseImage} from './index';
-import {Loading} from "./BaseLoading";
+import {Loading,LoadView} from "./BaseLoading";
 import {Toast} from "../utils/Toast";
 import store from "../mobx";
 import {Search} from '../page/search/Search';
@@ -38,6 +37,12 @@ export default class BaseContainer extends Component <Props>{
 
       }
 
+    componentDidMount() {
+        if (Platform.OS === 'android') {
+            StatusBar.setBackgroundColor('rgba(0,0,0,0)')
+        }
+    }
+
     /**
      * 重新加载
       */
@@ -59,7 +64,7 @@ export default class BaseContainer extends Component <Props>{
 
         if (isLoading) {
             if(loading_children) return loading_children;
-            return <Loading/>
+            return <LoadView/>
         }
         if (isError) return <BaseError onPress={onErrorPress || this.defaultPress}/>;
         return children;
@@ -98,6 +103,21 @@ export default class BaseContainer extends Component <Props>{
         return null
     }
 
+    renderLoading(){
+
+        const {store} = this.props;
+        if (store){
+            const {toastLoading} = store;
+            if (toastLoading){
+                return <LoadView/>
+            } else {
+                return null
+            }
+        }
+
+    }
+
+
     renderSearch(){
         const {store} = this.props;
         if (store){
@@ -121,51 +141,14 @@ export default class BaseContainer extends Component <Props>{
         return(
             this.renderItem(this.baseTheme.brightBackGroundColor)
         )
-        // if (this.changeImage) {
-        //     this.isDark = true
-        // }
-        //
-
-       // if (this.isDark) {
-       //         return(
-       //             this.renderItem(this.baseTheme.brightBackGroundColor)
-       //         )
-       //     }else {
-       //         if (this.changeImage){
-       //             return(
-       //                 <ImageBackground
-       //                     source={this.changeImage}
-       //                     style={{flex:1,width:WIDTH}}>
-       //                     {this.renderItem('transparent')}
-       //                 </ImageBackground>
-       //             )
-       //         } else {
-       //             return(
-       //                 <ImageBackground
-       //                     style={{flex:1,width:WIDTH}}>
-       //                     {this.renderItem(this.baseTheme.brightBackGroundColor)}
-       //                 </ImageBackground>
-       //             )
-       //         }
-       //     }
-
-        // return(
-        //
-        //     this.isDark ? this.renderItem(color):
-        //     <ImageBackground
-        //         source={this.changeImage}
-        //         style={{flex:1,width:WIDTH}}>
-        //         {this.renderItem(color)}
-        //     </ImageBackground>
-        //
-        // )
+    
     }
 
     renderItem=(color)=>{
 
         return( <View style={[styles.container,{backgroundColor:color}]}>
                 {this.renderToast()}
-                {this.renderSearch()}
+                {this.renderLoading()}
                 {this.renderNavView()}
                 {this.renderContent()}
                 <StatusBar

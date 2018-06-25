@@ -6,7 +6,7 @@ import {inject, observer} from "mobx-react";
 import {View, Text} from 'react-native';
 import {style} from "../../page/book/Styles";
 import {BaseString,BaseContainer} from '../../base';
-import {Loading} from "../../base/BaseLoading";
+import {Loading,LoadView} from "../../base/BaseLoading";
 
 
 export const BookCommentLoading =inject('baseTheme')(observer(({baseTheme})=>{
@@ -14,7 +14,7 @@ export const BookCommentLoading =inject('baseTheme')(observer(({baseTheme})=>{
     return(
         <BaseContainer  navBar={null}>
 
-            <Loading/>
+            <LoadView/>
 
             <View style={[style.bookCommentsTopView,{ backgroundColor:baseTheme.brightBackGroundColor}]}>
                 <View style={[style.bookCommentsTopLeftImg,{ backgroundColor:baseTheme.brightDefaultColor}]}/>

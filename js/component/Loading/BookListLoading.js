@@ -4,16 +4,16 @@
  */
 import React from "react";
 import {View} from 'react-native';
-import {BaseString} from "../../base/index";
+import {BaseString,BaseContainer} from "../../base/index";
 import {inject, observer} from "mobx-react";
 import {style} from "../../page/book/Styles";
-import {Loading,GifLoading} from "../../base/BaseLoading";
+import {Loading,GifLoading,LoadView} from "../../base/BaseLoading";
 
 export const BookListLoading=inject('baseTheme')(observer(({baseTheme})=>{
     return(
         <View style={{flex:1}}>
 
-            <Loading/>
+            <LoadView/>
             {
                 BaseString.BOOK_TOP_CLASS_TYPE.map((item,i)=>{
                     return(

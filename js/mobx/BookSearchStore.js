@@ -9,7 +9,7 @@ import {BasePageStore} from "./BasePageStore";
 interface BookSearch{
     hotBook:Array<any>,
     bookResult:Array<any>,
-    textInputContext:string | number,
+    textInputContext:string,
     automatically:Array<any>,
     auther:string,
     autherList:Array<any>,

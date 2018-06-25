@@ -86,7 +86,7 @@ export default class BouncingPreloader extends Component {
         const { iconLeft, iconRight } = this.state;
         const { size } = this.props;
         return (
-            <View style={styles.container}>
+            <View>
                 <Animated.View
                     style={{
                         marginLeft: 60,

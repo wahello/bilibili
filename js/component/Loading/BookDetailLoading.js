@@ -8,7 +8,7 @@ import {BaseImage} from "../../base/index";
 import React from "react";
 import {style} from "../../page/book/Styles";
 import {BaseString,BaseContainer} from '../../base/index';
-import {GifLoading, Loading} from "../../base/BaseLoading";
+import {GifLoading, Loading,LoadView} from "../../base/BaseLoading";
 import {scaleSize} from "../../utils/ScreenUtils";
 
 export const BookDetailLoading =inject('baseTheme')(observer(({baseTheme})=>{
@@ -16,7 +16,7 @@ export const BookDetailLoading =inject('baseTheme')(observer(({baseTheme})=>{
         <BaseContainer
             navBar={null}>
 
-            <Loading/>
+            <LoadView/>
 
             <View style={style.bookDetailViewTop}>
                 <View style={[style.bookDetailViewTopLeftImg,{ backgroundColor:baseTheme.brightDefaultColor,  height:scaleSize(300),shadowColor: baseTheme.brightDefaultColor}]}/>

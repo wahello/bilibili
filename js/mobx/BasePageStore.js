@@ -14,7 +14,8 @@ interface BaseStore {
     isSearch:boolean,
     errorMsg:string,
     toastMsg:string,
-    errorPress:()=>void
+    errorPress:()=>void,
+    toastLoading:boolean
 }
 
 export class BasePageStore implements BaseStore{
@@ -25,11 +26,12 @@ export class BasePageStore implements BaseStore{
     @observable isToast=false;
     @observable isSearch=false;
     @observable toastMsg;
+    @observable toastLoading;
     loadingMsg;
     errorMsg;
     errorPress;
 
-    constructor(data=[],isLoading=false,isError=false, isToast = false,isSearch=false,loadingMsg = BaseString.LOADING_TITLE, errorMsg = BaseString.ERROR_TEXT){
+    constructor(data=[],isLoading=false,isError=false, isToast = false,isSearch=false,toastLoading=false,loadingMsg = BaseString.LOADING_TITLE, errorMsg = BaseString.ERROR_TEXT){
         this.setData(data);
         this.isLoading = isLoading;
         this.isError = isError;
@@ -37,6 +39,7 @@ export class BasePageStore implements BaseStore{
         this.errorMsg = errorMsg;
         this.isToast = isToast;
         this.isSearch= isSearch;
+        this.toastLoading = toastLoading;
     }
 
     @action setData=(data)=>{
@@ -75,5 +78,15 @@ export class BasePageStore implements BaseStore{
             this.isSearch = false;
         }
         this.isSearch = isSearch;
+    }
+    @action showToastLoading(toastLoading:boolean = true){
+        if (this.isError) {
+            this.isError = false
+        }
+        this.toastLoading = toastLoading
+    }
+
+    @action hideToastLoading(toastLoading:boolean = false){
+        this.toastLoading = toastLoading
     }
 }

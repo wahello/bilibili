@@ -76,14 +76,11 @@ export class ClassBookListView extends React.Component<Props,any>{
                 onPress={()=>this.props.jump(_id,bookTitle)}
                 activeOpacity={1}>
                 <View style={[style.bookLoadView]}>
-                    <View style={ style.leftBookView} >
+                    <View style={ [style.leftBookView,{ backgroundColor:this.brightDefaultColor}]} >
                         <AutoSizingImage
                             uri={cover}
                             width={scaleSize(140)}
                         />
-                        {/*<ImageView uri={cover} styles={[*/}
-                            {/*style.leftBookView1,*/}
-                            {/*{ backgroundColor:this.brightDefaultColor, shadowColor: this.brightDefaultColor}]}/>*/}
                     </View>
                 <View style={style.rightBookView}>
                     <Text style={[style.BookViewTitle,{ color: this.brightNavTextColor,}]} numberOfLines={1}>{bookTitle}</Text>

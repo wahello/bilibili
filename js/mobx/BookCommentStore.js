@@ -59,9 +59,18 @@ export default class BookCommentStore extends BasePageStore implements BookComme
 
     @action collection=()=>{
 
-        this.showToast(true,"收藏成功");
-        setTimeout(()=>{
-            this.hideToast()
-        },3000)
+        // this.showToast(true,"收藏成功");
+        // setTimeout(()=>{
+        //     this.hideToast()
+        // },3000)
+
+       this.showToastLoading(true);
+       setTimeout(()=>{
+           this.hideToastLoading();
+           this.showToast(true,"收藏成功");
+           setTimeout(()=>{
+               this.hideToast()
+           },3000)
+       },2000)
     }
 }

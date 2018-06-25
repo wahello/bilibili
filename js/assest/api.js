@@ -35,8 +35,8 @@ const BookApi={
     atoc:'/atoc/',//  获取小说正版源于盗版源(混合)
     mix_atoc:'/mix-atoc/', // 获取小说章节(根据小说id)
     short_evaluation:'/post/short-review?book=',
-    book_list:'/book-list',//包含此书的书单  //TODO /book-list/id/recommend?limit=10&start=0
-    book_list_detail:'/book-list',//书单详情 //TODO /book-list/id
+    book_list:'/book-list',//包含此书的书单  TODO /book-list/id/recommend?limit=10&start=0
+    book_list_detail:'/book-list',//书单详情 TODO /book-list/id
     recommend:'/recommend',
     by_book:'/post/by-book', //讨论
     short_review:'/post/short-review', //短评

@@ -6,7 +6,7 @@
 
 import * as React from 'react';
 import {observer} from 'mobx-react';
-import {Animated,View,StyleSheet,Easing,Image, Text} from 'react-native';
+import {Animated,View,StyleSheet,Easing,Image, Text, ActivityIndicator} from 'react-native';
 import {BaseImage,BaseString} from './index';
 import {scaleSize} from "../utils/ScreenUtils";
 import BouncingPreloader from '../component/BouncingPreloader';
@@ -78,7 +78,7 @@ export class Loading extends React.Component<any,State>{
 
                 </View>
             </View>
-            </View>: null
+            </View>
         )
     }
 }
@@ -90,11 +90,11 @@ const style = StyleSheet.create({
         height:scaleSize(60)
     },
     loadDialog: {
-        width: 60,
-        height: 60,
+        width: 70,
+        height: 70,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F7F7F7',
+        backgroundColor: 'rgba(0,0,0,0.7)',
         borderRadius: 10,
         marginBottom:100
     },
@@ -112,7 +112,7 @@ export class GifLoading extends React.Component{
 
     render(){
         return(
-            <View style={{ width:'100%', height:'100%',backgroundColor:'rgba(0,0,0,0)',position:'absolute',top:0,zIndex:99}}>
+            <View style={{ width:'100%', height:'100%',backgroundColor:'rgba(0,0,0,0)',position:'absolute',top:0,zIndex:99,}}>
                 <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
                     <BouncingPreloader
                         leftRotation='0deg'
@@ -125,6 +125,25 @@ export class GifLoading extends React.Component{
                 </View>
             </View>
         )
+    }
+
+}
+
+export class LoadView extends React.PureComponent{
+
+    render(){
+
+        return(
+            <View style={{ width:'100%', height:'100%',
+                justifyContent:'center',alignItems:'center',
+                backgroundColor:'rgba(0,0,0,0)',position:'absolute',top:0,zIndex:99}}>
+                <View style={style.loadDialog}>
+                    <ActivityIndicator color='#FFF' animating={true} size='small'/>
+                    <Text style={{fontSize:10,color:'#fff',marginTop:8}}>加载中...</Text>
+                </View>
+            </View>
+        )
+
     }
 
 }

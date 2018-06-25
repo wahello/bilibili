@@ -107,7 +107,7 @@ export const style = StyleSheet.create({
         shadowOpacity: 1,
         shadowRadius: 5,
         shadowColor: 'rgba(0,0,0,0.5)',
-        elevation: 10,
+         elevation: 20,
     },
     leftBookView1:{
         width:scaleSize(140),
